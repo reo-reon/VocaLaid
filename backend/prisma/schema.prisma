@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Artist {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  songs Song[]
+
+  @@index([name])
+}
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  songs Song[]
+}
+
+model Song {
+  id           Int       @id @default(autoincrement())
+  title        String
+  artistId     Int
+  artist       Artist    @relation(fields: [artistId], references: [id])
+  originalUrl  String?
+  duration     Int?      // duration in seconds (optional)
+  difficulty   String?   // free-form difficulty or ranking
+  notes        String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  categories   Category[]
+
+  @@index([title])
+}

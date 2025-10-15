@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: vocalaid_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  adminer:
+    image: adminer:latest
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+  db-init:
+    image: node:18-alpine
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app:cached
+    depends_on:
+      - db
+    entrypoint: ["/bin/sh", "-c"]
+    # This service is intended to be run on demand:
+    # docker compose run --rm db-init
+    # It will install dependencies, run prisma db push, then run the seed script.
+    command: "npm install --no-audit --no-fund && npx prisma db push && npm run seed"
+
+volumes:
+  pgdata:
