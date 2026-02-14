@@ -25,7 +25,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
     setError(null)
     try {
       await Promise.resolve(onSubmit({ email, password }))
-    } catch (err) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_err) {
       setError('Login failed')
     } finally {
       setLoading(false)

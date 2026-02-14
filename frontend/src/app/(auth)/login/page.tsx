@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation'
 export default function LoginPage() {
   const router = useRouter()
 
-  const handleLogin = async (data: LoginFormData) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleLogin = async (_data: LoginFormData) => {
     // TODO: call backend auth API and handle tokens
     // For now, simulate a short delay
     await new Promise((res) => setTimeout(res, 400))

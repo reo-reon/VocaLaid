@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-rozha-one: var(--font-rozha-one);
+  --font-noto-sans-jp: var(--font-noto-sans-jp);
 }
 
 @theme inline {
@@ -23,4 +25,120 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Wedding Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.8s ease-out;
+}
+
+.animate-bounce {
+  animation: bounce 2s infinite;
+}
+
+/* Letter spacing for headers */
+.letter-spacing {
+  letter-spacing: 0.05em;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Typography */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-cormorant), 'Georgia', serif;
+}
+
+/* Elegant Font for Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair), 'Georgia', serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+h3 {
+  font-size: 1.875rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+/* Japanese Typography */
+.japanese-text,
+.ja {
+  font-family: var(--font-noto-sans-jp), sans-serif;
+  font-weight: 300;
+}
+
+/* English Typography */
+.english-text,
+.en {
+  font-family: var(--font-rozha-one), serif;
+  font-weight: 300;
+}
+
+/* Elegant paragraph styling */
+p {
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+}
+
+/* Section titles with elegant styling */
+.section-title {
+  font-family: var(--font-rozha-one), serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #3b2817;
 }
