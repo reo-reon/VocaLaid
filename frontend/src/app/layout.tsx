@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Playfair_Display, Cormorant_Garamond, Noto_Serif_JP } from "next/font/google";
+import { Geist, Geist_Mono, Rozha_One, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,22 +12,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair",
+const rozhaOne = Rozha_One({
+  variable: "--font-rozha-one",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400"],
 });
 
-const cormorantGaramond = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const notoSerifJP = Noto_Serif_JP({
-  variable: "--font-noto-serif-jp",
+const notoSansJP = Noto_Sans_JP({
+  variable: "--font-noto-sans-jp",
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600", "700", "900"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -43,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${cormorantGaramond.variable} ${notoSerifJP.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${rozhaOne.variable} ${notoSansJP.variable} antialiased`}
       >
         {children}
       </body>

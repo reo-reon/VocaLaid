@@ -3,9 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --font-playfair: var(--font-playfair);
-  --font-cormorant: var(--font-cormorant);
-  --font-noto-serif-jp: var(--font-noto-serif-jp);
+  --font-rozha-one: var(--font-rozha-one);
+  --font-noto-sans-jp: var(--font-noto-sans-jp);
 }
 
 @theme inline {
@@ -118,16 +117,15 @@ h3 {
 /* Japanese Typography */
 .japanese-text,
 .ja {
-  font-family: var(--font-noto-serif-jp), 'Georgia', serif;
-  font-weight: 500;
+  font-family: var(--font-noto-sans-jp), sans-serif;
+  font-weight: 300;
 }
 
 /* English Typography */
 .english-text,
 .en {
-  font-family: var(--font-playfair), 'Georgia', serif;
-  font-weight: 400;
-  letter-spacing: 0.05em;
+  font-family: var(--font-rozha-one), serif;
+  font-weight: 300;
 }
 
 /* Elegant paragraph styling */
@@ -138,7 +136,7 @@ p {
 
 /* Section titles with elegant styling */
 .section-title {
-  font-family: var(--font-playfair), 'Georgia', serif;
+  font-family: var(--font-rozha-one), serif;
   font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: 0.06em;

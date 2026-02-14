@@ -16,7 +16,7 @@ export function WeddingHeader({
   groomName,
   brideName,
   date,
-  venue,
+  venue: _venue,
   backgroundImage,
   onNavClick,
 }: HeaderProps) {
@@ -57,35 +57,35 @@ export function WeddingHeader({
         <div className="absolute inset-0 bg-black/25" />
       </div>
 
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-40 bg-white">
-        <div className="container mx-auto px-4 py-4 flex justify-center gap-70">
-          <button
-            onClick={() => handleNavClick('message')}
-            className="text-black hover:text-amber-700 transition-colors en"
-            style={{fontFamily: 'var(--font-playfair)', letterSpacing: '0.08em'}}
-          >
-            <span className="block text-sm text-black en" style={{fontWeight: 400}}>MESSAGE</span>
-            <span className="block text-sm ja text-gray-700" style={{fontFamily: 'var(--font-noto-sans-jp)', fontWeight: 400, marginTop: '4px'}}>メッセージ</span>
-          </button>
-          <button
-            onClick={() => handleNavClick('information')}
-            className="text-black hover:text-amber-700 transition-colors en"
-            style={{fontFamily: 'var(--font-playfair)', letterSpacing: '0.08em'}}
-          >
-            <span className="block text-sm text-black en" style={{fontWeight: 400}}>INFORMATION</span>
-            <span className="block text-sm ja text-gray-700" style={{fontFamily: 'var(--font-noto-sans-jp)', fontWeight: 400, marginTop: '4px'}}>ご案内</span>
-          </button>
-          <button
-            onClick={() => handleNavClick('rsvp')}
-            className="text-black hover:text-amber-700 transition-colors en"
-            style={{fontFamily: 'var(--font-playfair)', letterSpacing: '0.08em'}}
-          >
-            <span className="block text-sm text-black en" style={{fontWeight: 400}}>R.S.V.P.</span>
-            <span className="block text-sm ja text-gray-700" style={{fontFamily: 'var(--font-noto-sans-jp)', fontWeight: 400, marginTop: '4px'}}>ご欠席</span>
-          </button>
-        </div>
-      </nav>
+        {/* Navigation */}
+        <nav className="fixed top-0 left-0 right-0 z-40 bg-white">
+          <div className="container mx-auto px-4 py-4 flex justify-center gap-70">
+            <button
+              onClick={() => handleNavClick('message')}
+              className="text-black hover:text-amber-700 transition-colors en"
+              style={{letterSpacing: '0.08em'}}
+            >
+              <span className="block text-black en" style={{fontSize: '16px', fontWeight: 400}}>MESSAGE</span>
+              <span className="block ja text-gray-700" style={{fontSize: '9px', fontWeight: 400, marginTop: '4px'}}>メッセージ</span>
+            </button>
+            <button
+              onClick={() => handleNavClick('information')}
+              className="text-black hover:text-amber-700 transition-colors en"
+              style={{letterSpacing: '0.08em'}}
+            >
+              <span className="block text-black en" style={{fontSize: '16px', fontWeight: 400}}>INFORMATION</span>
+              <span className="block ja text-gray-700" style={{fontSize: '9px', fontWeight: 400, marginTop: '4px'}}>ご案内</span>
+            </button>
+            <button
+              onClick={() => handleNavClick('rsvp')}
+              className="text-black hover:text-amber-700 transition-colors en"
+              style={{letterSpacing: '0.08em'}}
+            >
+              <span className="block text-black en" style={{fontSize: '16px', fontWeight: 400}}>R.S.V.P.</span>
+              <span className="block ja text-gray-700" style={{fontSize: '9px', fontWeight: 400, marginTop: '4px'}}>ご出欠</span>
+            </button>
+          </div>
+        </nav>
 
       {/* Hero Content */}
       <div
@@ -97,7 +97,7 @@ export function WeddingHeader({
           className={`absolute top-24 right-8 md:right-16 text-sm md:text-lg font-light tracking-widest en max-w-xs md:max-w-sm text-right transform transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
           }`}
-          style={{fontFamily: 'var(--font-playfair)', fontSize: '0.95rem', letterSpacing: '0.05em'}}
+          style={{fontSize: '1.3rem', letterSpacing: '0.05em'}}
         >
           &quot; Our joy will be more complete,{' '}
           <br /> if you can share it with us &quot;
@@ -109,7 +109,7 @@ export function WeddingHeader({
           }`}
         >
           <div className="mb-16">
-            <h1 className="text-7xl md:text-8xl font-light mb-6 letter-spacing en" style={{fontFamily: 'var(--font-playfair)', fontWeight: 700, lineHeight: 1.1}}>
+            <h1 className="font-light mb-6 letter-spacing en" style={{fontSize: '62px', fontWeight: 700, lineHeight: 1.1, letterSpacing: '0.15em'}}>
               WEDDING
               <br />
               INVITATION
@@ -121,13 +121,13 @@ export function WeddingHeader({
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <p className="text-2xl md:text-3xl font-light mb-6 en" style={{fontFamily: 'var(--font-playfair)', letterSpacing: '0.03em'}}>
-              <span className="font-light">{groomName}</span>
+            <p className="text-2xl md:text-3xl font-light mb-6 en" style={{letterSpacing: '0.03em'}}>
+              <span className="font-light">{groomName.split(' ')[0]}</span>
               <span className="mx-3">and</span>
-              <span className="font-light">{brideName}</span>
+              <span className="font-light">{brideName.split(' ')[0]}</span>
             </p>
-            <p className="text-sm md:text-base font-light mb-3 en" style={{fontFamily: 'var(--font-playfair)', letterSpacing: '0.1em'}}>{date}</p>
-            <p className="text-sm md:text-base font-light en flex items-center justify-center gap-3" style={{fontFamily: 'var(--font-playfair)', letterSpacing: '0.1em'}}>
+            <p className="text-sm md:text-base font-light mb-3 en" style={{letterSpacing: '0.1em'}}>{date}</p>
+            <p className="text-sm md:text-base font-light en flex items-center justify-center gap-3" style={{letterSpacing: '0.1em'}}>
               <a href="https://www.thesodoh.com/wedding/" className="inline-block">
                 <img 
                   src="https://www.thesodoh.com/mg/wp-content/themes/sodoh_2024/shared/img/common/logo.svg" 

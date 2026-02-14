@@ -4,8 +4,8 @@ export const sampleWeddingConfig: WeddingInvitationConfig = {
   groom: {
     japaneseFirstName: '陽介',
     japaneseLastName: '片岡',
-    romanFirstName: 'Yousuke',
-    romanLastName: 'Kataoka',
+    romanFirstName: 'YOUSUKE',
+    romanLastName: 'KATAOKA',
     birthDate: '1993年1月1日',
     bloodType: 'O',
     introduction: `1993年1月1日　東京都生まれ
@@ -22,8 +22,8 @@ O型　システムエンジニア
   bride: {
     japaneseFirstName: '美咲',
     japaneseLastName: '湯浅',
-    romanFirstName: 'Misaki',
-    romanLastName: 'Yuasa',
+    romanFirstName: 'MISAKI',
+    romanLastName: 'YUASA',
     birthDate: '1994年4月13日',
     bloodType: 'A',
     introduction: `1994年4月13日　広島県生まれ
@@ -54,7 +54,8 @@ A型　ハーレーダビットソン営業
     time: '10:00',
     venue: {
       name: 'THE SODOH HIGASHIYAMA KYOTO',
-      address: '〒605-0824 京都府京都市東山区下河原通八坂塔ノ前上る南町409',
+      address: `〒605-0824
+京都府京都市東山区下河原通八坂塔ノ前上る南町409`,
       phone: '075-541-3333',
       website: 'https://www.thesodoh.com/wedding/access/',
       mapUrl:
@@ -68,7 +69,8 @@ A型　ハーレーダビットソン営業
     time: '10:00',
     venue: {
       name: 'YASAKA',
-      address: '〒605-0824 京都府京都市東山区下河原通八坂塔ノ前上る南町409',
+      address: `〒605-0824
+京都府京都市東山区下河原通八坂塔ノ前上る南町409`,
       phone: '075-541-3333',
       website: 'https://www.thesodoh.com/wedding/access/',
       mapUrl:
