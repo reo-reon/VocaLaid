@@ -34,12 +34,12 @@ jobs:
           app_location: "frontend" 
           
           # API (Azure Functions 等) のソースコードがあるディレクトリ
-          # backend が不要な場合は "" (空) にしてください
-          api_location: "backend" 
+          # Next.js の場合は空文字列にする必要があります
+          api_location: "" 
           
           # ビルド後の静的ファイルが出力されるディレクトリ
-          # Next.js の static export を使う場合は "out" になります
-          output_location: "out" 
+          # Next.js の場合は ".next" になります
+          output_location: ".next" 
           ################################################
 
   close_pull_request_job:
