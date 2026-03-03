@@ -67,17 +67,17 @@ export default function WeddingInvitationPage() {
         ]}
       />
 
-      {/* Information Section */}
-      <InformationSection
-        ceremony={config.ceremony}
-        reception={config.reception}
-      />
-
       {/* Message Section */}
       <MessageSection
         groom={config.groom}
         bride={config.bride}
         greetingMessage={config.greetingMessage}
+      />
+
+      {/* Information Section */}
+      <InformationSection
+        ceremony={config.ceremony}
+        reception={config.reception}
       />
 
       {/* RSVP Section */}
