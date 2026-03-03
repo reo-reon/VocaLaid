@@ -122,7 +122,7 @@ export function GuestInputForm({
         <label className="block text-sm font-semibold text-gray-800 mb-2 ja">
           <span className="text-red-500">*</span> 年齢区分
         </label>
-        <div className="grid grid-cols-2 gap-4 sm:flex sm:flex-nowrap sm:gap-6">
+        <div className="flex flex-wrap gap-x-6 gap-y-4">
           {[
             { value: 'adult', label: '大人' },
             { value: 'child', label: '子供（～18歳頃）', sub: '大人と同じ食事' },
@@ -131,7 +131,7 @@ export function GuestInputForm({
           ].map(option => {
             const checked = guest.ageCategory === option.value;
             return (
-              <label key={option.value} className="flex items-start cursor-pointer gap-2 shrink-0">
+              <label key={option.value} className="flex items-start cursor-pointer gap-2" style={{ minWidth: 0 }}>
                 <input
                   type="radio"
                   name={`ageCategory-${index}`}
@@ -141,7 +141,7 @@ export function GuestInputForm({
                   className="sr-only"
                 />
                 <span
-                  className={`w-8 h-8 border-2 rounded-sm flex items-center justify-center transition-colors duration-150 shrink-0 ${checked ? 'bg-black border-black' : 'bg-white border-black'}`}
+                  className={`w-8 h-8 min-w-[2rem] min-h-[2rem] border-2 rounded-sm flex items-center justify-center transition-colors duration-150 shrink-0 ${checked ? 'bg-black border-black' : 'bg-white border-black'}`}
                 >
                 </span>
                 <span className="text-black text-sm ja whitespace-nowrap">
