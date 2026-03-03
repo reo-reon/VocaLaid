@@ -302,6 +302,7 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit, onOpenTerms }: RSVP
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) {
+      document.getElementById('rsvp')?.scrollIntoView({ behavior: 'smooth' });
       return;
     }
     setShowConfirmModal(true);

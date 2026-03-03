@@ -2,13 +2,14 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useImageSlideshow } from '../hooks/useImageSlideshow';
 
 interface HeaderProps {
   groomName: string;
   brideName: string;
   date: string;
   venue: string;
-  backgroundImage: string;
+  backgroundImages: string[];
   onNavClick?: (section: string) => void;
 }
 
@@ -17,13 +18,14 @@ export function WeddingHeader({
   brideName,
   date,
   venue: _venue,
-  backgroundImage,
+  backgroundImages,
   onNavClick,
 }: HeaderProps) {
   const { ref, isVisible } = useScrollAnimation(0.3);
   const [scrollY, setScrollY] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const { currentIndex } = useImageSlideshow(backgroundImages, 5000);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -54,21 +56,25 @@ export function WeddingHeader({
 
   return (
     <header className="relative w-full overflow-hidden">
-      {/* Background Image with Parallax */}
+      {/* Background Image with Parallax + Slideshow */}
       <div
         className="absolute inset-0 w-full h-screen overflow-hidden"
         style={{
           transform: `translateY(${scrollY * 0.5}px)`,
         }}
       >
-        <img
-          src={backgroundImage}
-          alt="Wedding background"
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{
-            objectPosition: 'top',
-          }}
-        />
+        {backgroundImages.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt="Wedding background"
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+            style={{
+              objectPosition: 'top',
+              opacity: i === currentIndex ? 1 : 0,
+            }}
+          />
+        ))}
         <div className="absolute inset-0 bg-black/25" />
       </div>
 

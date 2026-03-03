@@ -61,7 +61,10 @@ export default function WeddingInvitationPage() {
         brideName={`${config.bride.romanFirstName} ${config.bride.romanLastName}`}
         date={config.ceremony.date}
         venue={config.ceremony.venue.name}
-        backgroundImage="/img/UniversalStudioJp.JPG"
+        backgroundImages={[
+          "/img/UniversalStudioJp.JPG",
+          "/img/sample.png",
+        ]}
       />
 
       {/* Message Section */}
