@@ -55,32 +55,10 @@ export function WeddingHeader({
   };
 
   return (
-    <header className="relative w-full overflow-hidden isolate">
-      {/* Background Image with Parallax + Slideshow */}
-      <div
-        className="absolute inset-0 w-full h-screen overflow-hidden"
-        style={{
-          transform: `translateY(${scrollY * 0.5}px)`,
-        }}
-      >
-        {backgroundImages.map((src, i) => (
-          <img
-            key={src}
-            src={src}
-            alt="Wedding background"
-            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
-            style={{
-              objectPosition: 'top',
-              opacity: i === currentIndex ? 1 : 0,
-            }}
-          />
-        ))}
-        <div className="absolute inset-0 bg-black/25" />
-      </div>
-
-        {/* Navigation */}
-        <nav className="fixed top-0 left-0 right-0 z-40 bg-white" ref={menuRef}>
-          <div className="container mx-auto px-4 py-4 flex items-center justify-center">
+    <>
+      {/* Navigation - header の外に出して z-index を確実にルートコンテキストで解決 */}
+      <nav className="fixed top-0 left-0 right-0 z-[100] bg-white" ref={menuRef}>
+        <div className="container mx-auto px-4 py-4 flex items-center justify-center">
             {/* Desktop menu */}
             <div className="hidden md:flex gap-70">
               <button
@@ -160,7 +138,30 @@ export function WeddingHeader({
               </button>
             </div>
           </div>
-        </nav>
+      </nav>
+
+      <header className="relative w-full overflow-hidden isolate">
+      {/* Background Image with Parallax + Slideshow */}
+      <div
+        className="absolute inset-0 w-full h-screen overflow-hidden"
+        style={{
+          transform: `translateY(${scrollY * 0.5}px)`,
+        }}
+      >
+        {backgroundImages.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt="Wedding background"
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+            style={{
+              objectPosition: 'top',
+              opacity: i === currentIndex ? 1 : 0,
+            }}
+          />
+        ))}
+        <div className="absolute inset-0 bg-black/25" />
+      </div>
 
       {/* Hero Content */}
       <div
@@ -253,5 +254,6 @@ export function WeddingHeader({
         </div>
       </div>
     </header>
+    </>
   );
 }

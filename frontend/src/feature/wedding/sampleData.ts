@@ -64,7 +64,7 @@ A型　ハーレーダビッドソン営業
     type: 'ceremony',
     date: '2026.05.01',
     weekday: 'Fri',
-    time: '10:00',
+    time: '11:30　Reception: 11:00',
     venue: {
       name: 'THE HIGASHIYAMA',
       address: `〒605-0827
@@ -79,7 +79,7 @@ A型　ハーレーダビッドソン営業
     type: 'reception',
     date: '2026.05.01',
     weekday: 'Fri',
-    time: '10:00',
+    time: '12:30',
     venue: {
       name: `YASAKA`,
     },

@@ -55,10 +55,12 @@ export function InformationSection({
           </p>
         </div>
 
-        <div>
-          <p className="text-sm text-gray-600 ja">住所</p>
-          <p className="text-sm text-gray-800 ja">{event.venue.address}</p>
-        </div>
+        {event.venue.address && (
+          <div>
+            <p className="text-sm text-gray-600 ja">住所</p>
+            <p className="text-sm text-gray-800 ja">{event.venue.address}</p>
+          </div>
+        )}
 
         {event.venue.phone && (
           <div>
