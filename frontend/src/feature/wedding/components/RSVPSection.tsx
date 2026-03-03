@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { RSVPFormData } from '../types';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { GuestInputForm } from './GuestInputForm';
@@ -75,6 +75,17 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit, onOpenTerms }: RSVP
 
   // お連れ様リスト
   const [guests, setGuests] = useState<Array<RSVPFormData>>([]);
+
+  // アニメーション用: ゲストごとの安定ID管理
+  const guestIdCounter = useRef(0);
+  const [guestKeys, setGuestKeys] = useState<number[]>([]);
+  const guestKeysRef = useRef<number[]>([]);
+  const [removingKeys, setRemovingKeys] = useState<Set<number>>(new Set());
+  const [enteringKeys, setEnteringKeys] = useState<Set<number>>(new Set());
+
+  useEffect(() => {
+    guestKeysRef.current = guestKeys;
+  }, [guestKeys]);
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [guestErrors, setGuestErrors] = useState<Array<Record<string, string>>>([]);
@@ -246,6 +257,48 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit, onOpenTerms }: RSVP
     }
   };
 
+  const handleAddGuest = () => {
+    const newId = ++guestIdCounter.current;
+    setGuests(prev => [...prev, {
+      status: 'attending',
+      guestCategory: formData.guestCategory,
+      japaneseFirstName: '',
+      japaneseLastName: '',
+      kanaFirstName: '',
+      kanaLastName: '',
+      email: '',
+      dietaryRestrictions: 'without',
+    }]);
+    setGuestKeys(prev => [...prev, newId]);
+    setGuestErrors(prev => [...prev, {}]);
+    setEnteringKeys(prev => new Set(prev).add(newId));
+    setTimeout(() => {
+      setEnteringKeys(prev => {
+        const next = new Set(prev);
+        next.delete(newId);
+        return next;
+      });
+    }, 500);
+  };
+
+  const handleRemoveGuest = (i: number) => {
+    const keyToRemove = guestKeysRef.current[i];
+    setRemovingKeys(prev => new Set(prev).add(keyToRemove));
+    setTimeout(() => {
+      const removeIdx = guestKeysRef.current.indexOf(keyToRemove);
+      if (removeIdx !== -1) {
+        setGuests(prev => prev.filter((_, j) => j !== removeIdx));
+        setGuestKeys(prev => prev.filter((_, j) => j !== removeIdx));
+        setGuestErrors(prev => prev.filter((_, j) => j !== removeIdx));
+      }
+      setRemovingKeys(prev => {
+        const next = new Set(prev);
+        next.delete(keyToRemove);
+        return next;
+      });
+    }, 400);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) {
@@ -283,6 +336,9 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit, onOpenTerms }: RSVP
           dietaryRestrictions: 'without',
         });
         setGuests([]);
+        setGuestKeys([]);
+        setRemovingKeys(new Set());
+        setEnteringKeys(new Set());
       } else {
         setSubmitError(response.message || 'An error occurred during submission.');
       }
@@ -710,40 +766,34 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit, onOpenTerms }: RSVP
             </div>
 
             {/* お連れ様入力欄 */}
-            {guests.map((guest, idx) => (
-              <GuestInputForm
-                key={idx}
-                guest={guest}
-                index={idx}
-                errors={guestErrors[idx]}
-                onInputChange={handleInputChange}
-                onRadioChange={handleRadioChange}
-                onAllergyToggle={handleAllergyToggle}
-                onRemove={(i) => {
-                  setGuests(prev => prev.filter((_, index) => index !== i));
-                  setGuestErrors(prev => prev.filter((_, index) => index !== i));
-                }}
-              />
-            ))}
+            {guests.map((guest, idx) => {
+              const key = guestKeys[idx];
+              const isRemoving = removingKeys.has(key);
+              const isEntering = enteringKeys.has(key);
+              return (
+                <div
+                  key={key}
+                  className={isRemoving ? 'animate-guestFadeOut' : isEntering ? 'animate-guestFadeIn' : ''}
+                >
+                  <GuestInputForm
+                    guest={guest}
+                    index={idx}
+                    errors={guestErrors[idx]}
+                    onInputChange={handleInputChange}
+                    onRadioChange={handleRadioChange}
+                    onAllergyToggle={handleAllergyToggle}
+                    onRemove={handleRemoveGuest}
+                  />
+                </div>
+              );
+            })}
 
             {/* お連れ様追加ボタン */}
             <div className="flex items-center justify-center gap-8">
               <button
                 type="button"
                 className="flex items-center gap-4 px-6 py-3 bg-white border-none text-black text-2xl font-normal focus:outline-none cursor-pointer"
-                onClick={() => {
-                  setGuests(prev => [...prev, {
-                    status: 'attending',
-                    guestCategory: formData.guestCategory,
-                    japaneseFirstName: '',
-                    japaneseLastName: '',
-                    kanaFirstName: '',
-                    kanaLastName: '',
-                    email: '',
-                    dietaryRestrictions: 'without',
-                  }]);
-                  setGuestErrors(prev => [...prev, {}]);
-                }}
+                onClick={handleAddGuest}
               >
                 <span className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-800 text-white text-3xl font-bold">＋</span>
                 <span className="text-black text-2xl ja">お連れ様の追加</span>

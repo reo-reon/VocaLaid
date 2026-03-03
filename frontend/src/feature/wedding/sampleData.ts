@@ -81,7 +81,8 @@ A型　ハーレーダビッドソン営業
     weekday: 'Fri',
     time: '10:00',
     venue: {
-      name: 'YASAKA',
+      name: `THE SODOH HIGASHIYAMA KYOTO
+      YASAKA`,
       address: `〒605-0824
 京都府京都市東山区下河原通八坂塔ノ前上る南町409`,
       phone: '075-541-3333',

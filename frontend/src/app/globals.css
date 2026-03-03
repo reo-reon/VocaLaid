@@ -72,6 +72,37 @@ body {
   animation: bounce 2s infinite;
 }
 
+@keyframes guestFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes guestFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+
+.animate-guestFadeIn {
+  animation: guestFadeIn 0.4s ease-out forwards;
+}
+
+.animate-guestFadeOut {
+  animation: guestFadeOut 0.35s ease-in forwards;
+  pointer-events: none;
+}
+
 /* Letter spacing for headers */
 .letter-spacing {
   letter-spacing: 0.05em;

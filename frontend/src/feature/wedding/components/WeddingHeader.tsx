@@ -163,13 +163,12 @@ export function WeddingHeader({
       >
         {/* Quote Section - Top Right */}
         <p 
-          className={`absolute top-24 right-8 md:right-16 text-sm md:text-lg font-light tracking-widest en max-w-xs md:max-w-sm text-right transform transition-all duration-1000 ${
+          className={`absolute top-24 right-8 md:right-16 text-xs md:text-xl font-light en max-w-[15rem] md:max-w-sm text-right transform transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
           }`}
-          style={{fontSize: '1.3rem', letterSpacing: '0.05em'}}
+          style={{letterSpacing: '0.05em'}}
         >
-          &quot; Our joy will be more complete,{' '}
-          <br /> if you can share it with us &quot;
+          &quot; Our joy will be more complete, if you can share it with us &quot;
         </p>
 
         <div
@@ -177,8 +176,8 @@ export function WeddingHeader({
             isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
           }`}
         >
-          <div className="mb-16">
-            <h1 className="font-light mb-6 letter-spacing en" style={{fontSize: 'clamp(32px, 10vw, 62px)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '0.15em'}}>
+          <div className="mb-8">
+            <h1 className="font-light mb-0 letter-spacing en" style={{fontSize: 'clamp(32px, 10vw, 62px)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '0.15em'}}>
               WEDDING
               <br />
               INVITATION
@@ -190,22 +189,39 @@ export function WeddingHeader({
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <p className="text-2xl md:text-3xl font-light mb-6 en" style={{letterSpacing: '0.03em'}}>
+            <p className="text-2xl md:text-3xl font-light mb-8 en" style={{letterSpacing: '0.03em'}}>
               <span className="font-light">{groomName.split(' ')[0]}</span>
               <span className="mx-3">and</span>
               <span className="font-light">{brideName.split(' ')[0]}</span>
             </p>
-            <p className="text-sm md:text-base font-light mb-3 en" style={{letterSpacing: '0.1em'}}>{date}</p>
-            <p className="text-sm md:text-base font-light en flex items-center justify-center gap-3" style={{letterSpacing: '0.1em'}}>
-              <a href="https://www.thesodoh.com/wedding/" className="inline-block">
-                <img 
-                  src="https://www.thesodoh.com/mg/wp-content/themes/sodoh_2024/shared/img/common/logo.svg" 
-                  alt="THE SODOH HIGASHIYAMA KYOTO"
-                  className="h-10 md:h-14"
-                  style={{filter: 'brightness(0) invert(1)'}}
-                />
-              </a>
-            </p>
+            <p className="text-2xl md:text-3xl font-light mb-8 en" style={{letterSpacing: '0.1em'}}>{date}</p>
+            <a
+              href="https://www.thesodoh.com/wedding/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex flex-col items-center text-white no-underline"
+              style={{lineHeight: 1, gap: 0}}
+            >
+              <span
+                className="en"
+                style={{fontSize: '18px', letterSpacing: '0.28em', fontWeight: 400}}
+              >
+                THE
+              </span>
+              <span
+                className="en"
+                style={{fontSize: '46px', letterSpacing: '0.06em', fontWeight: 400, lineHeight: 1.05}}
+              >
+                SODOH
+              </span>
+              <div style={{width: '100%', height: '1px', backgroundColor: 'white', margin: '4px 0'}} />
+              <span
+                className="en"
+                style={{fontSize: '10px', letterSpacing: '0.22em', fontWeight: 400}}
+              >
+                HIGASHIYAMA&nbsp;&nbsp;KYOTO
+              </span>
+            </a>
           </div>
         </div>
 
