@@ -27,6 +27,10 @@ jobs:
         working-directory: backend
         run: npm ci
 
+      - name: Generate Prisma Client
+        working-directory: backend
+        run: npx prisma generate
+
       - name: Build NestJS
         working-directory: backend
         run: npm run build
@@ -37,3 +41,4 @@ jobs:
           app-name: ${{ secrets.AZURE_BACKEND_APP_NAME }}
           publish-profile: ${{ secrets.AZURE_BACKEND_PUBLISH_PROFILE }}
           package: backend
+          startup-command: npm run start:azure
