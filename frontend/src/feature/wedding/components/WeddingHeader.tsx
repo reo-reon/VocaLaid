@@ -55,7 +55,7 @@ export function WeddingHeader({
   };
 
   return (
-    <header className="relative w-full overflow-hidden">
+    <header className="relative w-full overflow-hidden isolate">
       {/* Background Image with Parallax + Slideshow */}
       <div
         className="absolute inset-0 w-full h-screen overflow-hidden"

@@ -66,9 +66,9 @@ A型　ハーレーダビッドソン営業
     weekday: 'Fri',
     time: '10:00',
     venue: {
-      name: 'THE SODOH HIGASHIYAMA KYOTO',
-      address: `〒605-0824
-京都府京都市東山区下河原通八坂塔ノ前上る南町409`,
+      name: 'THE HIGASHIYAMA',
+      address: `〒605-0827
+京都市東山区八坂通下河原東入八坂上町366`,
       phone: '075-541-3333',
       website: 'https://www.thesodoh.com/wedding/access/',
       mapUrl:
@@ -81,14 +81,7 @@ A型　ハーレーダビッドソン営業
     weekday: 'Fri',
     time: '10:00',
     venue: {
-      name: `THE SODOH HIGASHIYAMA KYOTO
-      YASAKA`,
-      address: `〒605-0824
-京都府京都市東山区下河原通八坂塔ノ前上る南町409`,
-      phone: '075-541-3333',
-      website: 'https://www.thesodoh.com/wedding/access/',
-      mapUrl:
-        'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12239.113619231508!2d135.778927!3d34.999121!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600108c55c3db09f%3A0xa2609c6915c96084!2z44K2IOOCveOCpuODieOCpiDmnbHlsbEg5Lqs6YO9IOODluODqeOCpOODgOODq-OCteODreODsw!5e1!3m2!1sja!2sjp!4v1771037557111!5m2!1sja!2sjp',
+      name: `YASAKA`,
     },
   },
   rsvpDeadline: '2026年3月30日',

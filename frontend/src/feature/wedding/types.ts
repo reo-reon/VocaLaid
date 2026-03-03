@@ -13,8 +13,8 @@ export interface Person {
 
 export interface Venue {
   name: string;
-  address: string;
-  phone: string;
+  address?: string;
+  phone?: string;
   website?: string;
   mapUrl?: string;
 }
