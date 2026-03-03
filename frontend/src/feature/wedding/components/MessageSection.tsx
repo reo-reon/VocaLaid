@@ -1,5 +1,7 @@
-import Image from 'next/image';
+'use client';
+
 import { Person } from '../types';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface MessageSectionProps {
   groom: Person;
@@ -12,11 +14,21 @@ export function MessageSection({
   bride,
   greetingMessage,
 }: MessageSectionProps) {
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
+  const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation();
+  const { ref: groomRef, isVisible: groomVisible } = useScrollAnimation();
+  const { ref: brideRef, isVisible: brideVisible } = useScrollAnimation();
+
   return (
     <section id="message" className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         {/* Title */}
-        <div className="text-center mb-16">
+        <div
+          ref={titleRef}
+          className={`text-center mb-16 transition-all duration-500 ${
+            titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2>
             <span className="block text-black-700 en" style={{letterSpacing: '0.05em', fontSize: '42px', fontWeight: 400}}>MESSAGE</span>
             <span className="block text-black-900 ja" style={{fontSize: '15px', fontWeight: 400, marginTop: '-8px'}}>メッセージ</span>
@@ -24,8 +36,13 @@ export function MessageSection({
         </div>
 
         {/* Greeting Message */}
-        <div className="max-w-2xl mx-auto text-center mb-16">
-          <p className="text-black-700 leading-relaxed whitespace-pre-wrap md:text-base ja" style={{lineHeight: 1.9,letterSpacing: '0.15em'}}>
+        <div
+          ref={contentRef}
+          className={`max-w-2xl mx-auto text-center mb-16 transition-all duration-500 ${
+            contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <p className="text-black-700 leading-relaxed whitespace-pre-wrap md:text-base ja" style={{lineHeight: 1.9, letterSpacing: '0.15em'}}>
             {greetingMessage}
           </p>
         </div>
@@ -33,13 +50,17 @@ export function MessageSection({
         {/* Groom and Bride Section */}
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Groom */}
-          <div className="text-center">
+          <div
+            ref={groomRef}
+            className={`text-center transition-all duration-500 ${
+              groomVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <div className="mb-8 rounded-lg overflow-hidden shadow-lg">
-              <Image
+              <img
                 src={groom.profileImage}
                 alt={groom.romanFirstName}
-                width={600}
-                height={800}
                 className="w-full h-96 object-cover"
               />
             </div>
@@ -62,13 +83,17 @@ export function MessageSection({
           </div>
 
           {/* Bride */}
-          <div className="text-center">
+          <div
+            ref={brideRef}
+            className={`text-center transition-all duration-500 delay-200 ${
+              brideVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
             <div className="mb-8 rounded-lg overflow-hidden shadow-lg">
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={bride.profileImage}
                 alt={bride.romanFirstName}
-                width={600}
-                height={800}
                 className="w-full h-96 object-cover"
               />
             </div>
