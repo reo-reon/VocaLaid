@@ -58,8 +58,8 @@ interface RSVPSectionProps {
 }
 
 export function RSVPSection({ deadline, onSubmit: _onSubmit, onOpenTerms }: RSVPSectionProps) {
-  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation(0.2);
-  const { ref: formRef, isVisible: formVisible } = useScrollAnimation(0.2);
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation(0.05);
+  const { ref: formRef, isVisible: formVisible } = useScrollAnimation(0.05);
 
   const [formData, setFormData] = useState<RSVPFormData>({
     status: 'attending',

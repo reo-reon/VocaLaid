@@ -12,11 +12,11 @@ export function InformationSection({
   ceremony,
   reception,
 }: InformationSectionProps) {
-  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation(0.2);
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation(0.05);
   const { ref: ceremonyRef, isVisible: ceremonyVisible } =
-    useScrollAnimation(0.2);
+    useScrollAnimation(0.05);
   const { ref: receptionRef, isVisible: receptionVisible } =
-    useScrollAnimation(0.2);
+    useScrollAnimation(0.05);
 
   const EventCard = ({
     event,

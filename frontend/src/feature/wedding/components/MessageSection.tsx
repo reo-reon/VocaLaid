@@ -15,10 +15,10 @@ export function MessageSection({
   bride,
   greetingMessage,
 }: MessageSectionProps) {
-  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation(0.2);
-  const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation(0.2);
-  const { ref: groomRef, isVisible: groomVisible } = useScrollAnimation(0.2);
-  const { ref: brideRef, isVisible: brideVisible } = useScrollAnimation(0.2);
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation(0.05);
+  const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation(0.05);
+  const { ref: groomRef, isVisible: groomVisible } = useScrollAnimation(0.05);
+  const { ref: brideRef, isVisible: brideVisible } = useScrollAnimation(0.05);
 
   return (
     <section id="message" className="py-16 md:py-24 bg-white">
