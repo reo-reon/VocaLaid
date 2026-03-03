@@ -82,6 +82,7 @@ export default function WeddingInvitationPage() {
         <RSVPSection
           deadline={config.rsvpDeadline}
           onSubmit={handleRSVPSubmit}
+          onOpenTerms={() => setShowTermsModal(true)}
         />
       </div>
 

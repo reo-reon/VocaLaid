@@ -43,7 +43,7 @@ export function WeddingFooter({ onOpenTerms }: WeddingFooterProps) {
 
           <button
             onClick={handleScrollToTop}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg transition-colors text-white"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg transition-colors text-white cursor-pointer"
             style={{backgroundColor: 'rgb(197, 156, 57)'}}
           >
             <svg

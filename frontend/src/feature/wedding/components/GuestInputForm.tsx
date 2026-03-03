@@ -5,6 +5,7 @@ import { RSVPFormData } from '../types';
 interface GuestInputFormProps {
   guest: RSVPFormData;
   index: number;
+  errors?: Record<string, string>;
   onInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, idx: number) => void;
   onRadioChange: (name: string, value: string, idx: number) => void;
   onAllergyToggle: (value: string, idx: number) => void;
@@ -14,6 +15,7 @@ interface GuestInputFormProps {
 export function GuestInputForm({
   guest,
   index,
+  errors = {},
   onInputChange,
   onRadioChange,
   onAllergyToggle,
@@ -26,7 +28,7 @@ export function GuestInputForm({
       {/* お名前 */}
       <div>
         <label className="block text-sm font-semibold text-gray-800 mb-4 ja">
-          お名前
+          <span className="text-red-500">*</span> お名前
         </label>
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -36,8 +38,9 @@ export function GuestInputForm({
               placeholder="姓"
               value={guest.japaneseLastName}
               onChange={e => onInputChange(e, index)}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-black border-gray-300"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-black ${errors.japaneseLastName ? 'border-red-500' : 'border-gray-300'}`}
             />
+            {errors.japaneseLastName && <p className="text-red-500 text-xs mt-1">{errors.japaneseLastName}</p>}
           </div>
           <div>
             <input
@@ -46,8 +49,9 @@ export function GuestInputForm({
               placeholder="名"
               value={guest.japaneseFirstName}
               onChange={e => onInputChange(e, index)}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-black border-gray-300"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-black ${errors.japaneseFirstName ? 'border-red-500' : 'border-gray-300'}`}
             />
+            {errors.japaneseFirstName && <p className="text-red-500 text-xs mt-1">{errors.japaneseFirstName}</p>}
           </div>
         </div>
       </div>
@@ -65,8 +69,9 @@ export function GuestInputForm({
               placeholder="せい"
               value={guest.kanaLastName || ''}
               onChange={e => onInputChange(e, index)}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-black border-gray-300"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-black ${errors.kanaLastName ? 'border-red-500' : 'border-gray-300'}`}
             />
+            {errors.kanaLastName && <p className="text-red-500 text-xs mt-1">{errors.kanaLastName}</p>}
           </div>
           <div>
             <input
@@ -75,8 +80,9 @@ export function GuestInputForm({
               placeholder="めい"
               value={guest.kanaFirstName || ''}
               onChange={e => onInputChange(e, index)}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-black border-gray-300"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-black ${errors.kanaFirstName ? 'border-red-500' : 'border-gray-300'}`}
             />
+            {errors.kanaFirstName && <p className="text-red-500 text-xs mt-1">{errors.kanaFirstName}</p>}
           </div>
         </div>
       </div>
@@ -114,7 +120,7 @@ export function GuestInputForm({
       {/* 年齢区分 */}
       <div>
         <label className="block text-sm font-semibold text-gray-800 mb-2 ja">
-          年齢区分
+          <span className="text-red-500">*</span> 年齢区分
         </label>
         <div className="grid grid-cols-2 gap-4 sm:flex sm:flex-nowrap sm:gap-6">
           {[
@@ -148,9 +154,8 @@ export function GuestInputForm({
             );
           })}
         </div>
+        {errors.ageCategory && <p className="text-red-500 text-xs mt-2">{errors.ageCategory}</p>}
       </div>
-
-      {/* アレルギー情報 */}
       <div>
         <label className="block text-sm font-semibold text-gray-800 mb-2 ja">
           アレルギー情報

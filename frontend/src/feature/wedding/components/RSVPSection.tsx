@@ -54,9 +54,10 @@ function translateValidationMessage(msg: string): string {
 interface RSVPSectionProps {
   deadline: string;
   onSubmit?: (data: RSVPFormData) => void;
+  onOpenTerms?: () => void;
 }
 
-export function RSVPSection({ deadline, onSubmit: _onSubmit }: RSVPSectionProps) {
+export function RSVPSection({ deadline, onSubmit: _onSubmit, onOpenTerms }: RSVPSectionProps) {
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation(0.2);
   const { ref: formRef, isVisible: formVisible } = useScrollAnimation(0.2);
 
@@ -75,6 +76,7 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit }: RSVPSectionProps)
   const [guests, setGuests] = useState<Array<RSVPFormData>>([]);
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [guestErrors, setGuestErrors] = useState<Array<Record<string, string>>>([]);
   const [showAllergy, setShowAllergy] = useState(false);
   const [agreed, setAgreed] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -103,7 +105,19 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit }: RSVPSectionProps)
     if (!formData.phone?.trim()) newErrors.phone = '電話番号を入力してください';
     if (!formData.ageCategory) newErrors.ageCategory = '年齢区分を選択してください';
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+
+    const newGuestErrors: Array<Record<string, string>> = guests.map((g) => {
+      const ge: Record<string, string> = {};
+      if (!g.japaneseLastName.trim()) ge.japaneseLastName = '姓を入力してください';
+      if (!g.japaneseFirstName.trim()) ge.japaneseFirstName = '名を入力してください';
+      if (!g.kanaLastName?.trim()) ge.kanaLastName = '姓（かな）を入力してください';
+      if (!g.kanaFirstName?.trim()) ge.kanaFirstName = '名（かな）を入力してください';
+      if (!g.ageCategory) ge.ageCategory = '年齢区分を選択してください';
+      return ge;
+    });
+    setGuestErrors(newGuestErrors);
+
+    return Object.keys(newErrors).length === 0 && newGuestErrors.every(ge => Object.keys(ge).length === 0);
   };
 
   const handleInputChange = (
@@ -116,6 +130,15 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit }: RSVPSectionProps)
         updated[idx] = { ...updated[idx], [name]: value };
         return updated;
       });
+      if (guestErrors[idx]?.[name]) {
+        setGuestErrors(prev => {
+          const updated = [...prev];
+          const e = { ...updated[idx] };
+          delete e[name];
+          updated[idx] = e;
+          return updated;
+        });
+      }
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
       if (errors[name]) {
@@ -135,8 +158,20 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit }: RSVPSectionProps)
         updated[idx] = { ...updated[idx], [name]: value };
         return updated;
       });
+      if (guestErrors[idx]?.[name]) {
+        setGuestErrors(prev => {
+          const updated = [...prev];
+          const e = { ...updated[idx] };
+          delete e[name];
+          updated[idx] = e;
+          return updated;
+        });
+      }
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
+      if (errors[name]) {
+        setErrors((prev) => { const e = { ...prev }; delete e[name]; return e; });
+      }
     }
   };
 
@@ -145,6 +180,9 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit }: RSVPSectionProps)
     // 123-4567 フォーマット
     const formatted = raw.length > 3 ? `${raw.slice(0, 3)}-${raw.slice(3)}` : raw;
     setFormData(prev => ({ ...prev, zipcode: formatted }));
+    if (errors.zipcode) {
+      setErrors(prev => { const e = { ...prev }; delete e.zipcode; return e; });
+    }
 
     if (raw.length === 7) {
       try {
@@ -189,6 +227,9 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit }: RSVPSectionProps)
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const digits = e.target.value.replace(/[^0-9]/g, '');
     setFormData(prev => ({ ...prev, phone: formatPhone(digits) }));
+    if (errors.phone) {
+      setErrors(prev => { const e = { ...prev }; delete e.phone; return e; });
+    }
   };
 
   const handleAllergyToggle = (value: string, idx?: number) => {
@@ -282,8 +323,8 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit }: RSVPSectionProps)
             >
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Attendance Status - Custom UI */}
-            <div className="flex flex-col items-center">
-              <div className="flex flex-row gap-24 justify-center">
+            <div className="flex flex-col items-center w-full">
+              <div className="flex flex-row gap-24 justify-center w-full">
                 {[
                   {
                     value: "attending",
@@ -650,10 +691,14 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit }: RSVPSectionProps)
                 key={idx}
                 guest={guest}
                 index={idx}
+                errors={guestErrors[idx]}
                 onInputChange={handleInputChange}
                 onRadioChange={handleRadioChange}
                 onAllergyToggle={handleAllergyToggle}
-                onRemove={(i) => setGuests(prev => prev.filter((_, index) => index !== i))}
+                onRemove={(i) => {
+                  setGuests(prev => prev.filter((_, index) => index !== i));
+                  setGuestErrors(prev => prev.filter((_, index) => index !== i));
+                }}
               />
             ))}
 
@@ -661,17 +706,20 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit }: RSVPSectionProps)
             <div className="flex items-center justify-center gap-8">
               <button
                 type="button"
-                className="flex items-center gap-4 px-6 py-3 bg-white border-none text-black text-2xl font-normal focus:outline-none"
-                onClick={() => setGuests(prev => [...prev, {
-                  status: 'attending',
-                  guestCategory: formData.guestCategory,
-                  japaneseFirstName: '',
-                  japaneseLastName: '',
-                  kanaFirstName: '',
-                  kanaLastName: '',
-                  email: '',
-                  dietaryRestrictions: 'without',
-                }])}
+                className="flex items-center gap-4 px-6 py-3 bg-white border-none text-black text-2xl font-normal focus:outline-none cursor-pointer"
+                onClick={() => {
+                  setGuests(prev => [...prev, {
+                    status: 'attending',
+                    guestCategory: formData.guestCategory,
+                    japaneseFirstName: '',
+                    japaneseLastName: '',
+                    kanaFirstName: '',
+                    kanaLastName: '',
+                    email: '',
+                    dietaryRestrictions: 'without',
+                  }]);
+                  setGuestErrors(prev => [...prev, {}]);
+                }}
               >
                 <span className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-800 text-white text-3xl font-bold">＋</span>
                 <span className="text-black text-2xl ja">お連れ様の追加</span>
@@ -689,12 +737,13 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit }: RSVPSectionProps)
                   className="w-4 h-4 mt-1 text-amber-700"
                 />
                 <span className="ml-3 text-sm text-gray-700 ja" style={{fontFamily: 'var(--font-noto-sans-jp)'}}>
-                  <a
-                    href="#terms"
-                    className="text-amber-700 hover:underline"
+                  <button
+                    type="button"
+                    onClick={onOpenTerms}
+                    className="text-amber-700 hover:underline bg-transparent border-none p-0 cursor-pointer"
                   >
                     利用規約
-                  </a>
+                  </button>
                   をお読みの上、同意されます
                 </span>
               </label>
@@ -705,7 +754,7 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit }: RSVPSectionProps)
               <button
                 type="submit"
                 disabled={!agreed || isLoading}
-                className="w-150 px-8 py-3 text-white rounded-lg hover:bg-amber-800 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors font-semibold ja"
+                className="w-150 px-8 py-3 text-white rounded-lg hover:bg-amber-800 disabled:bg-gray-300 disabled:cursor-not-allowed cursor-pointer transition-colors font-semibold ja"
                 style={{backgroundColor: 'rgb(118, 122, 37)'}}
               >
                 {isLoading ? '送信中...' : '送信'}

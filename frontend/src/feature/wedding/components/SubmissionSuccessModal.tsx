@@ -25,7 +25,8 @@ export function SubmissionSuccessModal({
 
         <button
           onClick={onClose}
-          className="w-full px-4 py-3 bg-amber-900 text-white rounded-lg hover:bg-amber-800 transition-colors font-semibold ja"
+          className="w-full px-4 py-3 text-white rounded-lg hover:opacity-90 transition-colors font-semibold ja cursor-pointer"
+          style={{backgroundColor: 'rgb(197, 156, 57)'}}
         >
           閉じる
         </button>

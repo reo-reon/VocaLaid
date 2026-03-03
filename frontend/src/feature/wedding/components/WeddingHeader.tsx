@@ -79,7 +79,7 @@ export function WeddingHeader({
             <div className="hidden md:flex gap-70">
               <button
                 onClick={() => handleNavClick('message')}
-                className="text-black hover:text-amber-700 transition-colors en"
+                className="text-black hover:text-amber-700 transition-colors en cursor-pointer"
                 style={{letterSpacing: '0.08em'}}
               >
                 <span className="block text-black en" style={{fontSize: '16px', fontWeight: 400}}>MESSAGE</span>
@@ -87,7 +87,7 @@ export function WeddingHeader({
               </button>
               <button
                 onClick={() => handleNavClick('information')}
-                className="text-black hover:text-amber-700 transition-colors en"
+                className="text-black hover:text-amber-700 transition-colors en cursor-pointer"
                 style={{letterSpacing: '0.08em'}}
               >
                 <span className="block text-black en" style={{fontSize: '16px', fontWeight: 400}}>INFORMATION</span>
@@ -95,7 +95,7 @@ export function WeddingHeader({
               </button>
               <button
                 onClick={() => handleNavClick('rsvp')}
-                className="text-black hover:text-amber-700 transition-colors en"
+                className="text-black hover:text-amber-700 transition-colors en cursor-pointer"
                 style={{letterSpacing: '0.08em'}}
               >
                 <span className="block text-black en" style={{fontSize: '16px', fontWeight: 400}}>R.S.V.P.</span>
@@ -105,7 +105,7 @@ export function WeddingHeader({
 
             {/* Hamburger button (mobile / tablet) */}
             <button
-              className="md:hidden ml-auto flex flex-col justify-center items-center w-10 h-10 gap-1.5"
+              className="md:hidden ml-auto flex flex-col justify-center items-center w-10 h-10 gap-1.5 cursor-pointer"
               onClick={() => setIsMenuOpen((prev) => !prev)}
               aria-label={isMenuOpen ? 'メニューを閉じる' : 'メニューを開く'}
             >
@@ -130,7 +130,7 @@ export function WeddingHeader({
             <div className="flex flex-col items-center gap-4 pb-4 border-t border-gray-100">
               <button
                 onClick={() => handleNavClick('message')}
-                className="text-black hover:text-amber-700 transition-colors en pt-4"
+                className="text-black hover:text-amber-700 transition-colors en pt-4 cursor-pointer"
                 style={{letterSpacing: '0.08em'}}
               >
                 <span className="block text-black en" style={{fontSize: '15px', fontWeight: 400}}>MESSAGE</span>
@@ -138,7 +138,7 @@ export function WeddingHeader({
               </button>
               <button
                 onClick={() => handleNavClick('information')}
-                className="text-black hover:text-amber-700 transition-colors en"
+                className="text-black hover:text-amber-700 transition-colors en cursor-pointer"
                 style={{letterSpacing: '0.08em'}}
               >
                 <span className="block text-black en" style={{fontSize: '15px', fontWeight: 400}}>INFORMATION</span>
@@ -146,7 +146,7 @@ export function WeddingHeader({
               </button>
               <button
                 onClick={() => handleNavClick('rsvp')}
-                className="text-black hover:text-amber-700 transition-colors en"
+                className="text-black hover:text-amber-700 transition-colors en cursor-pointer"
                 style={{letterSpacing: '0.08em'}}
               >
                 <span className="block text-black en" style={{fontSize: '15px', fontWeight: 400}}>R.S.V.P.</span>

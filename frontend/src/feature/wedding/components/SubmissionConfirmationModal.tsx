@@ -30,13 +30,14 @@ export function SubmissionConfirmationModal({
         <div className="flex gap-4 mt-8">
           <button
             onClick={onClose}
-            className="flex-1 px-4 py-2 border border-gray-300 text-gray-800 rounded-lg hover:bg-gray-50 transition-colors font-semibold ja"
+            className="flex-1 px-4 py-2 border border-gray-300 text-gray-800 rounded-lg hover:bg-gray-50 transition-colors font-semibold ja cursor-pointer"
           >
             戻る
           </button>
           <button
             onClick={onConfirm}
-            className="flex-1 px-4 py-2 bg-amber-900 text-white rounded-lg hover:bg-amber-800 transition-colors font-semibold ja"
+            className="flex-1 px-4 py-2 text-white rounded-lg hover:opacity-90 transition-colors font-semibold ja cursor-pointer"
+            style={{backgroundColor: 'rgb(88, 93, 61)'}}
           >
             送信
           </button>
