@@ -9,6 +9,7 @@ import {
   SubmissionConfirmationModal,
   SubmissionSuccessModal,
   WeddingFooter,
+  TermsModal,
 } from '@/feature/wedding/components';
 import { RSVPFormData } from '@/feature/wedding/types';
 import { sampleWeddingConfig } from '@/feature/wedding/sampleData';
@@ -16,6 +17,7 @@ import { sampleWeddingConfig } from '@/feature/wedding/sampleData';
 export default function WeddingInvitationPage() {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showTermsModal, setShowTermsModal] = useState(false);
   const [formData, setFormData] = useState<RSVPFormData | null>(null);
   const rsvpSectionRef = useRef<HTMLDivElement>(null);
 
@@ -84,7 +86,7 @@ export default function WeddingInvitationPage() {
       </div>
 
       {/* Footer */}
-      <WeddingFooter />
+      <WeddingFooter onOpenTerms={() => setShowTermsModal(true)} />
 
       {/* Modals */}
       <SubmissionConfirmationModal
@@ -102,6 +104,11 @@ export default function WeddingInvitationPage() {
             : ''
         }
         onClose={handleCloseSuccess}
+      />
+
+      <TermsModal
+        isOpen={showTermsModal}
+        onClose={() => setShowTermsModal(false)}
       />
     </div>
   );

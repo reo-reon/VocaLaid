@@ -55,7 +55,7 @@ export function GuestInputForm({
       {/* かな */}
       <div>
         <label className="block text-sm font-semibold text-gray-800 mb-4 ja">
-          かな
+          <span className="text-red-500">*</span> かな
         </label>
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -81,33 +81,34 @@ export function GuestInputForm({
         </div>
       </div>
 
-      {/* ローマ字 */}
+      {/* メールアドレス */}
       <div>
         <label className="block text-sm font-semibold text-gray-800 mb-4 ja">
-          ローマ字
+          メールアドレス
         </label>
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <input
-              type="text"
-              name="romanLastName"
-              placeholder="姓 last name"
-              value={guest.romanLastName}
-              onChange={e => onInputChange(e, index)}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-black border-gray-300"
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              name="romanFirstName"
-              placeholder="名 first name"
-              value={guest.romanFirstName}
-              onChange={e => onInputChange(e, index)}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-black border-gray-300"
-            />
-          </div>
-        </div>
+        <input
+          type="email"
+          name="email"
+          placeholder="your@email.com"
+          value={guest.email || ''}
+          onChange={e => onInputChange(e, index)}
+          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-black border-gray-300"
+        />
+      </div>
+
+      {/* 電話番号（任意） */}
+      <div>
+        <label className="block text-sm font-semibold text-gray-800 mb-4 ja">
+          電話番号
+        </label>
+        <input
+          type="tel"
+          name="phone"
+          placeholder="090-0000-0000"
+          value={guest.phone || ''}
+          onChange={e => onInputChange(e, index)}
+          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-black border-gray-300"
+        />
       </div>
 
       {/* 年齢区分 */}
@@ -115,15 +116,16 @@ export function GuestInputForm({
         <label className="block text-sm font-semibold text-gray-800 mb-2 ja">
           年齢区分
         </label>
-        <div className="flex gap-8">
+        <div className="grid grid-cols-2 gap-4 sm:flex sm:flex-nowrap sm:gap-6">
           {[
             { value: 'adult', label: '大人' },
-            { value: 'child', label: '子ども' },
-            { value: 'infant', label: '幼児' },
+            { value: 'child', label: '子供（～18歳頃）', sub: '大人と同じ食事' },
+            { value: 'infant', label: '幼児（～5歳頃）', sub: 'お子様ランチ' },
+            { value: 'baby', label: '赤ちゃん（～1歳頃）', sub: '食事不要' },
           ].map(option => {
             const checked = guest.ageCategory === option.value;
             return (
-              <label key={option.value} className="flex items-center cursor-pointer gap-2">
+              <label key={option.value} className="flex items-start cursor-pointer gap-2 shrink-0">
                 <input
                   type="radio"
                   name={`ageCategory-${index}`}
@@ -136,7 +138,12 @@ export function GuestInputForm({
                   className={`w-8 h-8 border-2 rounded-sm flex items-center justify-center transition-colors duration-150 ${checked ? 'bg-black border-black' : 'bg-white border-black'}`}
                 >
                 </span>
-                <span className="text-black text-base ja">{option.label}</span>
+                <span className="text-black text-sm ja whitespace-nowrap">
+                  {option.label}
+                  {'sub' in option && option.sub && (
+                    <span className="block text-xs text-gray-500 font-normal whitespace-nowrap">※{option.sub}</span>
+                  )}
+                </span>
               </label>
             );
           })}

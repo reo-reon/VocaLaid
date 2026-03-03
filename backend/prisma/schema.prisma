@@ -3,14 +3,20 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_DIRECT")
 }
 
+/// アーティスト
 model Artist {
+  /// ID
   id        Int      @id @default(autoincrement())
+  /// アーティスト名
   name      String
+  /// 作成日時
   createdAt DateTime @default(now())
+  /// 更新日時
   updatedAt DateTime @updatedAt
 
   songs Song[]
@@ -18,28 +24,112 @@ model Artist {
   @@index([name])
 }
 
+/// カテゴリ
 model Category {
+  /// ID
   id        Int      @id @default(autoincrement())
+  /// カテゴリ名
   name      String   @unique
+  /// 作成日時
   createdAt DateTime @default(now())
+  /// 更新日時
   updatedAt DateTime @updatedAt
 
   songs Song[]
 }
 
+/// 楽曲
 model Song {
+  /// ID
   id           Int       @id @default(autoincrement())
+  /// 曲名
   title        String
+  /// アーティストID
   artistId     Int
   artist       Artist    @relation(fields: [artistId], references: [id])
+  /// 原曲URL
   originalUrl  String?
-  duration     Int?      // duration in seconds (optional)
-  difficulty   String?   // free-form difficulty or ranking
+  /// 演奏時間（秒）
+  duration     Int?
+  /// 難易度
+  difficulty   String?
+  /// メモ
   notes        String?
+  /// 作成日時
   createdAt    DateTime  @default(now())
+  /// 更新日時
   updatedAt    DateTime  @updatedAt
 
   categories   Category[]
 
   @@index([title])
+}
+
+/// 出欠ゲスト
+model RsvpGuest {
+  /// ID
+  id                   Int               @id @default(autoincrement())
+  /// 出欠ステータス
+  status               RsvpStatus        @default(ATTENDING)
+  /// ゲスト区分（新郎側／新婦側）
+  guestCategory        GuestCategory
+  /// 姓（漢字）
+  japaneseLastName     String
+  /// 名（漢字）
+  japaneseFirstName    String
+  /// 姓（かな）
+  kanaLastName         String
+  /// 名（かな）
+  kanaFirstName        String
+  /// メールアドレス
+  email                String?
+  /// 郵便番号
+  zipcode              String?
+  /// 住所
+  address              String?
+  /// 建物名
+  building             String?
+  /// 電話番号
+  phone                String?
+  /// 年齢区分
+  ageCategory          AgeCategory?
+  /// 食物アレルギー有無
+  dietaryRestrictions  DietaryRestriction @default(WITHOUT)
+  /// アレルギー詳細
+  allergyInfo          String?
+  /// メッセージ
+  message              String?
+  /// 主ゲストID（お連れ様の場合にセット）
+  primaryGuestId       Int?
+  primaryGuest         RsvpGuest?        @relation("GuestCompanions", fields: [primaryGuestId], references: [id], onDelete: Cascade)
+  companions           RsvpGuest[]       @relation("GuestCompanions")
+  /// 作成日時
+  createdAt            DateTime          @default(now())
+  /// 更新日時
+  updatedAt            DateTime          @updatedAt
+
+  @@index([email])
+  @@index([guestCategory])
+  @@index([primaryGuestId])
+}
+
+enum RsvpStatus {
+  ATTENDING
+  NOT_ATTENDING
+}
+
+enum GuestCategory {
+  GROOM
+  BRIDE
+}
+
+enum AgeCategory {
+  ADULT
+  CHILD
+  INFANT
+}
+
+enum DietaryRestriction {
+  WITH
+  WITHOUT
 }

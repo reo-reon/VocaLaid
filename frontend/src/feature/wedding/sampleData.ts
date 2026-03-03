@@ -10,12 +10,13 @@ export const sampleWeddingConfig: WeddingInvitationConfig = {
     bloodType: 'O',
     introduction: `1993年1月1日　東京都生まれ
 O型　システムエンジニア
-アウトドアが好きで
-週末は少し遠くまで出かけます
-犬が大好きです
+ドライブしたり友達とわいわい過ごす事が大好きです
 
-美味しい料理・お酒を用意してお待ちしております
-当日皆様にお会いできることを
+遠方からお越しいただく方も多く
+本当に申し訳ない気持ちでいっぱいです
+それでもこうして集まっていただけることが
+何よりも嬉しく　心強い限りです
+当日　皆様にお会いできることを
 心より楽しみにしております`,
     profileImage: '/img/groom-placeholder.jpg',
   },
@@ -27,13 +28,17 @@ O型　システムエンジニア
     birthDate: '1994年4月13日',
     bloodType: 'A',
     introduction: `1994年4月13日　広島県生まれ
-A型　ハーレーダビットソン営業
-子どもと猫が大好きです
-週末は美味しいご飯を食べに出かけます
+A型　ハーレーダビッドソン営業
 
-たくさん食べてたくさん飲んで
-楽しい時間にしたいと思っています
-当日皆様にお会いできることを
+バイクや映画・音楽を愛し
+家族でキャンプを楽しむ時間がとても大切です
+
+遠方からお越しいただく方も多く
+心よりお詫び申し上げます
+それでも大切な皆様と
+同じ時間を共に過ごせることを
+この上ない喜びと感じております
+当日　皆様にお会いできることを
 心より楽しみにしております`,
     profileImage: '/img/bride-placeholder.jpg',
   },
@@ -77,6 +82,6 @@ A型　ハーレーダビットソン営業
         'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12239.113619231508!2d135.778927!3d34.999121!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600108c55c3db09f%3A0xa2609c6915c96084!2z44K2IOOCveOCpuODieOCpiDmnbHlsbEg5Lqs6YO9IOODluODqeOCpOODgOODq-OCteODreODsw!5e1!3m2!1sja!2sjp!4v1771037557111!5m2!1sja!2sjp',
     },
   },
-  rsvpDeadline: '2026年2月28日',
-  rsvpDeadlineDate: '2026.02.28',
+  rsvpDeadline: '2026年3月30日',
+  rsvpDeadlineDate: '2026.03.30',
 };

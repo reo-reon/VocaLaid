@@ -32,12 +32,10 @@ export interface RSVPFormData {
   guestCategory: 'groom' | 'bride';
   japaneseFirstName: string;
   japaneseLastName: string;
-  romanFirstName: string;
-  romanLastName: string;
-  kanaFirstName?: string;
-  kanaLastName?: string;
-  email: string;
-  ageCategory?: 'adult' | 'child' | 'infant';
+  kanaFirstName: string;
+  kanaLastName: string;
+  email?: string;
+  ageCategory?: 'adult' | 'child' | 'infant' | 'baby';
   zipcode?: string;
   address?: string;
   building?: string;

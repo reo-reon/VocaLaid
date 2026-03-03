@@ -2,7 +2,11 @@
 
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
-export function WeddingFooter() {
+interface WeddingFooterProps {
+  onOpenTerms?: () => void;
+}
+
+export function WeddingFooter({ onOpenTerms }: WeddingFooterProps) {
   const { ref, isVisible } = useScrollAnimation(0.5);
 
   const handleScrollToTop = () => {
@@ -27,9 +31,13 @@ export function WeddingFooter() {
               <a href="#" className="text-white hover:text-amber-200 transition-colors en">
                 Privacy Policy
               </a>
-              <a href="#" className="text-white hover:text-amber-200 transition-colors en">
+              <button
+                type="button"
+                onClick={onOpenTerms}
+                className="text-white hover:text-amber-200 transition-colors en bg-transparent border-none p-0 cursor-pointer"
+              >
                 Terms of Use
-              </a>
+              </button>
             </div>
           </div>
 

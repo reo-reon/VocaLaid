@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface HeaderProps {
@@ -22,6 +22,8 @@ export function WeddingHeader({
 }: HeaderProps) {
   const { ref, isVisible } = useScrollAnimation(0.3);
   const [scrollY, setScrollY] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -29,12 +31,25 @@ export function WeddingHeader({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isMenuOpen]);
+
   const handleNavClick = (section: string) => {
     const element = document.getElementById(section);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       onNavClick?.(section);
     }
+    setIsMenuOpen(false);
   };
 
   return (
@@ -58,32 +73,86 @@ export function WeddingHeader({
       </div>
 
         {/* Navigation */}
-        <nav className="fixed top-0 left-0 right-0 z-40 bg-white">
-          <div className="container mx-auto px-4 py-4 flex justify-center gap-70">
+        <nav className="fixed top-0 left-0 right-0 z-40 bg-white" ref={menuRef}>
+          <div className="container mx-auto px-4 py-4 flex items-center justify-center">
+            {/* Desktop menu */}
+            <div className="hidden md:flex gap-70">
+              <button
+                onClick={() => handleNavClick('message')}
+                className="text-black hover:text-amber-700 transition-colors en"
+                style={{letterSpacing: '0.08em'}}
+              >
+                <span className="block text-black en" style={{fontSize: '16px', fontWeight: 400}}>MESSAGE</span>
+                <span className="block ja text-gray-700" style={{fontSize: '9px', fontWeight: 400, marginTop: '4px'}}>メッセージ</span>
+              </button>
+              <button
+                onClick={() => handleNavClick('information')}
+                className="text-black hover:text-amber-700 transition-colors en"
+                style={{letterSpacing: '0.08em'}}
+              >
+                <span className="block text-black en" style={{fontSize: '16px', fontWeight: 400}}>INFORMATION</span>
+                <span className="block ja text-gray-700" style={{fontSize: '9px', fontWeight: 400, marginTop: '4px'}}>ご案内</span>
+              </button>
+              <button
+                onClick={() => handleNavClick('rsvp')}
+                className="text-black hover:text-amber-700 transition-colors en"
+                style={{letterSpacing: '0.08em'}}
+              >
+                <span className="block text-black en" style={{fontSize: '16px', fontWeight: 400}}>R.S.V.P.</span>
+                <span className="block ja text-gray-700" style={{fontSize: '9px', fontWeight: 400, marginTop: '4px'}}>ご出欠</span>
+              </button>
+            </div>
+
+            {/* Hamburger button (mobile / tablet) */}
             <button
-              onClick={() => handleNavClick('message')}
-              className="text-black hover:text-amber-700 transition-colors en"
-              style={{letterSpacing: '0.08em'}}
+              className="md:hidden ml-auto flex flex-col justify-center items-center w-10 h-10 gap-1.5"
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+              aria-label={isMenuOpen ? 'メニューを閉じる' : 'メニューを開く'}
             >
-              <span className="block text-black en" style={{fontSize: '16px', fontWeight: 400}}>MESSAGE</span>
-              <span className="block ja text-gray-700" style={{fontSize: '9px', fontWeight: 400, marginTop: '4px'}}>メッセージ</span>
+              <span
+                className={`block w-6 h-0.5 bg-black transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}
+              />
+              <span
+                className={`block w-6 h-0.5 bg-black transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}
+              />
+              <span
+                className={`block w-6 h-0.5 bg-black transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}
+              />
             </button>
-            <button
-              onClick={() => handleNavClick('information')}
-              className="text-black hover:text-amber-700 transition-colors en"
-              style={{letterSpacing: '0.08em'}}
-            >
-              <span className="block text-black en" style={{fontSize: '16px', fontWeight: 400}}>INFORMATION</span>
-              <span className="block ja text-gray-700" style={{fontSize: '9px', fontWeight: 400, marginTop: '4px'}}>ご案内</span>
-            </button>
-            <button
-              onClick={() => handleNavClick('rsvp')}
-              className="text-black hover:text-amber-700 transition-colors en"
-              style={{letterSpacing: '0.08em'}}
-            >
-              <span className="block text-black en" style={{fontSize: '16px', fontWeight: 400}}>R.S.V.P.</span>
-              <span className="block ja text-gray-700" style={{fontSize: '9px', fontWeight: 400, marginTop: '4px'}}>ご出欠</span>
-            </button>
+          </div>
+
+          {/* Mobile dropdown menu */}
+          <div
+            className={`md:hidden overflow-hidden transition-all duration-300 ${
+              isMenuOpen ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'
+            }`}
+          >
+            <div className="flex flex-col items-center gap-4 pb-4 border-t border-gray-100">
+              <button
+                onClick={() => handleNavClick('message')}
+                className="text-black hover:text-amber-700 transition-colors en pt-4"
+                style={{letterSpacing: '0.08em'}}
+              >
+                <span className="block text-black en" style={{fontSize: '15px', fontWeight: 400}}>MESSAGE</span>
+                <span className="block ja text-gray-700 text-center" style={{fontSize: '9px', fontWeight: 400, marginTop: '4px'}}>メッセージ</span>
+              </button>
+              <button
+                onClick={() => handleNavClick('information')}
+                className="text-black hover:text-amber-700 transition-colors en"
+                style={{letterSpacing: '0.08em'}}
+              >
+                <span className="block text-black en" style={{fontSize: '15px', fontWeight: 400}}>INFORMATION</span>
+                <span className="block ja text-gray-700 text-center" style={{fontSize: '9px', fontWeight: 400, marginTop: '4px'}}>ご案内</span>
+              </button>
+              <button
+                onClick={() => handleNavClick('rsvp')}
+                className="text-black hover:text-amber-700 transition-colors en"
+                style={{letterSpacing: '0.08em'}}
+              >
+                <span className="block text-black en" style={{fontSize: '15px', fontWeight: 400}}>R.S.V.P.</span>
+                <span className="block ja text-gray-700 text-center" style={{fontSize: '9px', fontWeight: 400, marginTop: '4px'}}>ご出欠</span>
+              </button>
+            </div>
           </div>
         </nav>
 
@@ -109,7 +178,7 @@ export function WeddingHeader({
           }`}
         >
           <div className="mb-16">
-            <h1 className="font-light mb-6 letter-spacing en" style={{fontSize: '62px', fontWeight: 700, lineHeight: 1.1, letterSpacing: '0.15em'}}>
+            <h1 className="font-light mb-6 letter-spacing en" style={{fontSize: 'clamp(32px, 10vw, 62px)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '0.15em'}}>
               WEDDING
               <br />
               INVITATION

@@ -5,3 +5,4 @@ export { RSVPSection } from './RSVPSection';
 export { SubmissionConfirmationModal } from './SubmissionConfirmationModal';
 export { SubmissionSuccessModal } from './SubmissionSuccessModal';
 export { WeddingFooter } from './WeddingFooter';
+export { TermsModal } from './TermsModal';
