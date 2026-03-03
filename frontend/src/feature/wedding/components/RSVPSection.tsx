@@ -676,19 +676,21 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit, onOpenTerms }: RSVP
 
             {/* 二次会 */}
             <div className="bg-white rounded-lg p-6">
-              <label className="block text-sm font-semibold text-gray-800 mb-1 ja">
+              <label className="block text-sm font-semibold text-gray-800 mb-4 ja">
                 二次会へのご参加
               </label>
-              <p className="text-xs text-gray-500 mb-3 ja">※会費 5,000円の予定でございます</p>
-              <label className="flex items-center gap-2 cursor-pointer">
+              <label className="flex items-center cursor-pointer gap-2">
                 <input
                   type="checkbox"
                   name="afterParty"
                   checked={formData.afterParty || false}
                   onChange={(e) => setFormData(prev => ({ ...prev, afterParty: e.target.checked }))}
-                  className="w-4 h-4"
+                  className="sr-only"
                 />
-                <span className="text-sm text-gray-700 ja">参加希望</span>
+                <span
+                  className={`w-8 h-8 border-2 rounded-sm flex items-center justify-center transition-colors duration-150 shrink-0 ${formData.afterParty ? 'bg-black border-black' : 'bg-white border-black'}`}
+                />
+                <span className="text-black text-base ja">参加希望</span>
               </label>
             </div>
 
@@ -745,7 +747,6 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit, onOpenTerms }: RSVP
               >
                 <span className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-800 text-white text-3xl font-bold">＋</span>
                 <span className="text-black text-2xl ja">お連れ様の追加</span>
-                <span className="text-black text-2xl en">Add a guest</span>
               </button>
             </div>
 

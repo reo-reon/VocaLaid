@@ -52,7 +52,7 @@ export class RSVPClient extends RestClient {
    * RSVPFormData を APIへ送信するDTOに変換
    */
   private convertGuestToDTO(guest: RSVPFormData): RSVPGuestItemDTO {
-    const toUpper = (v?: string) => v?.toUpperCase() as never;
+    const toUpper = (v?: string) => v?.toUpperCase().replace(/-/g, '_') as never;
     return {
       status: toUpper(guest.status),
       guestCategory: toUpper(guest.guestCategory),

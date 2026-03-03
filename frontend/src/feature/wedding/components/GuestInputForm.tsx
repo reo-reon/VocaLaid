@@ -141,7 +141,7 @@ export function GuestInputForm({
                   className="sr-only"
                 />
                 <span
-                  className={`w-8 h-8 border-2 rounded-sm flex items-center justify-center transition-colors duration-150 ${checked ? 'bg-black border-black' : 'bg-white border-black'}`}
+                  className={`w-8 h-8 border-2 rounded-sm flex items-center justify-center transition-colors duration-150 shrink-0 ${checked ? 'bg-black border-black' : 'bg-white border-black'}`}
                 >
                 </span>
                 <span className="text-black text-sm ja whitespace-nowrap">
@@ -185,33 +185,39 @@ export function GuestInputForm({
       </div>
 
       {/* アレルギー情報入力欄 */}
-      <div>
-        <input
-          type="text"
-          name="allergyInfo"
-          placeholder="例：えび、かに、くるみ等"
-          value={guest.allergyInfo || ''}
-          onChange={e => onInputChange(e, index)}
-          maxLength={15}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-black"
-        />
-      </div>
+      {guest.dietaryRestrictions === 'with' && (
+        <div className="pt-2 border-t border-gray-200">
+          <input
+            type="text"
+            name="allergyInfo"
+            placeholder="例：えび、かに、くるみ等"
+            value={guest.allergyInfo || ''}
+            onChange={e => onInputChange(e, index)}
+            maxLength={15}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-black"
+          />
+        </div>
+      )}
 
       {/* 二次会 */}
       <div>
-        <label className="block text-sm font-semibold text-gray-800 mb-1 ja">
+        <label className="block text-sm font-semibold text-gray-800 mb-4 ja">
           二次会へのご参加
         </label>
-        <p className="text-xs text-gray-500 mb-3 ja">※会費 5,000円の予定でございます</p>
-        <label className="flex items-center gap-2 cursor-pointer">
+        <label className="flex items-center cursor-pointer gap-2">
           <input
             type="checkbox"
             name="afterParty"
             checked={guest.afterParty || false}
             onChange={(e) => onInputChange(e, index)}
-            className="w-4 h-4"
+            className="sr-only"
           />
-          <span className="text-sm text-gray-700 ja">参加希望</span>
+          <span
+            className={`w-8 h-8 border-2 rounded-sm flex items-center justify-center transition-colors duration-150 shrink-0 ${guest.afterParty ? 'bg-black border-black' : 'bg-white border-black'}`}
+          >
+            {/* 黒塗りつぶし: checked時のみ黒、未選択は白 */}
+          </span>
+          <span className="text-black text-base ja">参加希望</span>
         </label>
       </div>
 
