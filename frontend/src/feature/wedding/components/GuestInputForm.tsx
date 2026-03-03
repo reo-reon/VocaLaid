@@ -197,6 +197,24 @@ export function GuestInputForm({
         />
       </div>
 
+      {/* 二次会 */}
+      <div>
+        <label className="block text-sm font-semibold text-gray-800 mb-1 ja">
+          二次会へのご参加
+        </label>
+        <p className="text-xs text-gray-500 mb-3 ja">※会費 5,000円の予定でございます</p>
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input
+            type="checkbox"
+            name="afterParty"
+            checked={guest.afterParty || false}
+            onChange={(e) => onInputChange(e, index)}
+            className="w-4 h-4"
+          />
+          <span className="text-sm text-gray-700 ja">参加希望</span>
+        </label>
+      </div>
+
       {/* 削除ボタン */}
       <div className="flex justify-end mt-4">
         <button

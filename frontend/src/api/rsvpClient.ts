@@ -23,6 +23,7 @@ export interface RSVPGuestItemDTO {
   phone?: string;
   dietaryRestrictions: 'WITH' | 'WITHOUT';
   allergyInfo?: string;
+  afterParty?: boolean;
   message?: string;
 }
 
@@ -67,6 +68,7 @@ export class RSVPClient extends RestClient {
       phone: guest.phone,
       dietaryRestrictions: toUpper(guest.dietaryRestrictions),
       allergyInfo: guest.allergyInfo,
+      afterParty: guest.afterParty,
       message: guest.message,
     };
   }

@@ -42,6 +42,7 @@ export interface RSVPFormData {
   phone?: string;
   dietaryRestrictions: 'with' | 'without';
   allergyInfo?: string;
+  afterParty?: boolean;
   message?: string;
 }
 
