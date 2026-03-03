@@ -2,11 +2,13 @@
 
 interface SubmissionSuccessModalProps {
   isOpen: boolean;
+  guestName?: string;
   onClose?: () => void;
 }
 
 export function SubmissionSuccessModal({
   isOpen,
+  guestName: _guestName,
   onClose,
 }: SubmissionSuccessModalProps) {
   if (!isOpen) return null;

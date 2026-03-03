@@ -56,7 +56,7 @@ interface RSVPSectionProps {
   onSubmit?: (data: RSVPFormData) => void;
 }
 
-export function RSVPSection({ deadline, onSubmit }: RSVPSectionProps) {
+export function RSVPSection({ deadline, onSubmit: _onSubmit }: RSVPSectionProps) {
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation(0.2);
   const { ref: formRef, isVisible: formVisible } = useScrollAnimation(0.2);
 
