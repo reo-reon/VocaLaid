@@ -1,8 +1,5 @@
-'use client';
-
 import Image from 'next/image';
 import { Person } from '../types';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface MessageSectionProps {
   groom: Person;
@@ -15,21 +12,11 @@ export function MessageSection({
   bride,
   greetingMessage,
 }: MessageSectionProps) {
-  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation(0.05);
-  const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation(0.05);
-  const { ref: groomRef, isVisible: groomVisible } = useScrollAnimation(0.05);
-  const { ref: brideRef, isVisible: brideVisible } = useScrollAnimation(0.05);
-
   return (
     <section id="message" className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         {/* Title */}
-        <div
-          ref={titleRef}
-          className={`text-center mb-16 transition-all duration-1000 ${
-            titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
+        <div className="text-center mb-16">
           <h2>
             <span className="block text-black-700 en" style={{letterSpacing: '0.05em', fontSize: '42px', fontWeight: 400}}>MESSAGE</span>
             <span className="block text-black-900 ja" style={{fontSize: '15px', fontWeight: 400, marginTop: '-8px'}}>メッセージ</span>
@@ -37,12 +24,7 @@ export function MessageSection({
         </div>
 
         {/* Greeting Message */}
-        <div
-          ref={contentRef}
-          className={`max-w-2xl mx-auto text-center mb-16 transition-all duration-1000 delay-300 ${
-            contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
+        <div className="max-w-2xl mx-auto text-center mb-16">
           <p className="text-black-700 leading-relaxed whitespace-pre-wrap md:text-base ja" style={{lineHeight: 1.9,letterSpacing: '0.15em'}}>
             {greetingMessage}
           </p>
@@ -51,12 +33,7 @@ export function MessageSection({
         {/* Groom and Bride Section */}
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Groom */}
-          <div
-            ref={groomRef}
-            className={`text-center transition-all duration-1000 ${
-              groomVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-          >
+          <div className="text-center">
             <div className="mb-8 rounded-lg overflow-hidden shadow-lg">
               <Image
                 src={groom.profileImage}
@@ -85,12 +62,7 @@ export function MessageSection({
           </div>
 
           {/* Bride */}
-          <div
-            ref={brideRef}
-            className={`text-center transition-all duration-1000 delay-200 ${
-              brideVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-          >
+          <div className="text-center">
             <div className="mb-8 rounded-lg overflow-hidden shadow-lg">
               <Image
                 src={bride.profileImage}

@@ -365,7 +365,7 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit, onOpenTerms }: RSVP
             {/* Title & Description */}
             <div
               ref={titleRef}
-              className={`flex flex-col items-center text-center mb-20 transition-all duration-1000 ${titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              className={`flex flex-col items-center text-center mb-20 transition-all duration-500 ${titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             >
               <h2 className="mb-2">
                 <span className="block font-serif font-extrabold text-black text-5xl md:text-6xl tracking-wide en" style={{letterSpacing: '0.08em'}}>R.S.V.P.</span>
@@ -380,7 +380,7 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit, onOpenTerms }: RSVP
             {/* Form */}
             <div
               ref={formRef}
-              className={`transition-all duration-1000 delay-300 ${formVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              className={`transition-all duration-500 delay-300 ${formVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             >
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Attendance Status - Custom UI */}

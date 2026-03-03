@@ -28,7 +28,7 @@ export function InformationSection({
     delay?: number;
   }) => (
     <div
-      className={`rounded-lg p-8 transition-all duration-1000 ${
+      className={`rounded-lg p-8 transition-all duration-500 ${
         delay ? `delay-${delay}` : ''
       } ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
     >
@@ -108,7 +108,7 @@ export function InformationSection({
         {/* Title */}
         <div
           ref={titleRef}
-          className={`text-center mb-16 transition-all duration-1000 ${
+          className={`text-center mb-16 transition-all duration-500 ${
             titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
@@ -122,13 +122,13 @@ export function InformationSection({
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           <div
             ref={ceremonyRef}
-            className="transition-all duration-1000"
+            className="transition-all duration-500"
           >
             <EventCard event={ceremony} isVisible={ceremonyVisible} delay={0} />
           </div>
           <div
             ref={receptionRef}
-            className="transition-all duration-1000 delay-200"
+            className="transition-all duration-500"
           >
             <EventCard event={reception} isVisible={receptionVisible} delay={200} />
           </div>
