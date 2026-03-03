@@ -42,6 +42,7 @@ export class CreateRsvpUseCase {
       ageCategory: primaryDto.ageCategory,
       dietaryRestrictions: primaryDto.dietaryRestrictions,
       allergyInfo: primaryDto.allergyInfo,
+      afterParty: primaryDto.afterParty ?? false,
       message: primaryDto.message,
     });
 
@@ -66,6 +67,7 @@ export class CreateRsvpUseCase {
           ageCategory: companionDto.ageCategory,
           dietaryRestrictions: companionDto.dietaryRestrictions,
           allergyInfo: companionDto.allergyInfo,
+          afterParty: companionDto.afterParty ?? false,
           message: companionDto.message,
         }),
     );

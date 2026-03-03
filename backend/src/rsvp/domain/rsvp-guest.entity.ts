@@ -35,6 +35,7 @@ export class RsvpGuest {
   ageCategory?: AgeCategory;
   dietaryRestrictions: DietaryRestriction;
   allergyInfo?: string;
+  afterParty: boolean;
   message?: string;
   primaryGuestId?: number;
   createdAt?: Date;

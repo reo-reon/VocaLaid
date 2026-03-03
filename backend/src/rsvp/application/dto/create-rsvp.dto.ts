@@ -1,5 +1,6 @@
 import {
   IsArray,
+  IsBoolean,
   IsEmail,
   IsEnum,
   IsNotEmpty,
@@ -79,6 +80,11 @@ export class CreateRsvpGuestItemDto {
   @IsString()
   @MaxLength(15)
   allergyInfo?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  @Transform(({ value }) => (value == null ? false : Boolean(value)))
+  afterParty?: boolean;
 
   @IsOptional()
   @IsString()

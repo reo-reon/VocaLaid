@@ -40,6 +40,7 @@ export class PrismaRsvpRepository implements IRsvpRepository {
           ageCategory: primaryGuest.ageCategory,
           dietaryRestrictions: primaryGuest.dietaryRestrictions,
           allergyInfo: primaryGuest.allergyInfo,
+          afterParty: primaryGuest.afterParty,
           message: primaryGuest.message,
           companions: {
             create: companions.map((companion) => ({
@@ -57,6 +58,7 @@ export class PrismaRsvpRepository implements IRsvpRepository {
               ageCategory: companion.ageCategory,
               dietaryRestrictions: companion.dietaryRestrictions,
               allergyInfo: companion.allergyInfo,
+              afterParty: companion.afterParty,
               message: companion.message,
             })),
           },
@@ -89,6 +91,7 @@ export class PrismaRsvpRepository implements IRsvpRepository {
       building: createdGuest.building ?? undefined,
       phone: createdGuest.phone ?? undefined,
       allergyInfo: createdGuest.allergyInfo ?? undefined,
+      afterParty: createdGuest.afterParty,
       message: createdGuest.message ?? undefined,
       primaryGuestId: createdGuest.primaryGuestId ?? undefined,
     });

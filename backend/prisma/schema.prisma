@@ -97,6 +97,8 @@ model RsvpGuest {
   dietaryRestrictions  DietaryRestriction @default(WITHOUT)
   /// アレルギー詳細
   allergyInfo          String?
+  /// 二次会参加希望フラグ
+  afterParty           Boolean            @default(false)
   /// メッセージ
   message              String?
   /// 主ゲストID（お連れ様の場合にセット）
