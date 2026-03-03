@@ -122,7 +122,7 @@ export function GuestInputForm({
         <label className="block text-sm font-semibold text-gray-800 mb-2 ja">
           <span className="text-red-500">*</span> 年齢区分
         </label>
-        <div className="flex flex-wrap gap-x-6 gap-y-4">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-4">
           {[
             { value: 'adult', label: '大人' },
             { value: 'child', label: '子供（～18歳頃）', sub: '大人と同じ食事' },
@@ -131,7 +131,7 @@ export function GuestInputForm({
           ].map(option => {
             const checked = guest.ageCategory === option.value;
             return (
-              <label key={option.value} className="flex items-start cursor-pointer gap-2" style={{ minWidth: 0 }}>
+              <label key={option.value} className="flex items-start cursor-pointer gap-2">
                 <input
                   type="radio"
                   name={`ageCategory-${index}`}
@@ -141,13 +141,14 @@ export function GuestInputForm({
                   className="sr-only"
                 />
                 <span
-                  className={`w-8 h-8 min-w-[2rem] min-h-[2rem] border-2 rounded-sm flex items-center justify-center transition-colors duration-150 shrink-0 ${checked ? 'bg-black border-black' : 'bg-white border-black'}`}
+                  style={{ width: '2rem', height: '2rem', flexShrink: 0 }}
+                  className={`border-2 rounded-sm flex items-center justify-center transition-colors duration-150 ${checked ? 'bg-black border-black' : 'bg-white border-black'}`}
                 >
                 </span>
-                <span className="text-black text-sm ja whitespace-nowrap">
+                <span className="text-black text-sm ja">
                   {option.label}
                   {'sub' in option && option.sub && (
-                    <span className="block text-xs text-gray-500 font-normal whitespace-nowrap">※{option.sub}</span>
+                    <span className="block text-xs text-gray-500 font-normal">※{option.sub}</span>
                   )}
                 </span>
               </label>

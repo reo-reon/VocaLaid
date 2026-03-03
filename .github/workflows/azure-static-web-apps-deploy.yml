@@ -41,6 +41,9 @@ jobs:
           # Next.js の場合は ".next" になります
           output_location: ".next" 
           ################################################
+        env:
+          # NestJS バックエンドの Azure App Service URL
+          API_URL: ${{ secrets.AZURE_BACKEND_URL }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
