@@ -85,6 +85,6 @@ A型　ハーレーダビッドソン営業
     
     },
   },
-  rsvpDeadline: '2026年3月30日',
-  rsvpDeadlineDate: '2026.03.30',
+  rsvpDeadline: '2026年3月28日',
+  rsvpDeadlineDate: '2026.03.28',
 };

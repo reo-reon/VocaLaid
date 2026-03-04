@@ -140,9 +140,12 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit, onOpenTerms }: RSVP
       ? (e.target as HTMLInputElement).checked
       : value;
     if (typeof idx === 'number') {
+      const guestValue = name === 'phone'
+        ? formatPhone((value as string).replace(/[^0-9]/g, ''))
+        : actualValue;
       setGuests(prev => {
         const updated = [...prev];
-        updated[idx] = { ...updated[idx], [name]: actualValue };
+        updated[idx] = { ...updated[idx], [name]: guestValue };
         return updated;
       });
       if (guestErrors[idx]?.[name]) {
@@ -634,7 +637,8 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit, onOpenTerms }: RSVP
                         className="sr-only"
                       />
                       <span
-                        className={`w-8 h-8 border-2 rounded-sm flex items-center justify-center transition-colors duration-150 ${checked ? 'bg-black border-black' : 'bg-white border-black'}`}
+                        style={{ width: '32px', height: '32px', flexShrink: 0 }}
+                        className={`border-2 rounded-sm flex items-center justify-center transition-colors duration-150 ${checked ? 'bg-black border-black' : 'bg-white border-black'}`}
                       >
                         {/* 黒塗りつぶし: checked時のみ黒、未選択は白 */}
                       </span>
@@ -669,7 +673,8 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit, onOpenTerms }: RSVP
                         className="sr-only"
                       />
                       <span
-                        className={`w-8 h-8 border-2 rounded-sm flex items-center justify-center transition-colors duration-150 ${checked ? 'bg-black border-black' : 'bg-white border-black'}`}
+                        style={{ width: '32px', height: '32px', flexShrink: 0 }}
+                        className={`border-2 rounded-sm flex items-center justify-center transition-colors duration-150 ${checked ? 'bg-black border-black' : 'bg-white border-black'}`}
                       >
                         {/* 黒塗りつぶし: checked時のみ黒、未選択は白 */}
                       </span>
@@ -706,7 +711,8 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit, onOpenTerms }: RSVP
                         className="sr-only"
                       />
                       <span
-                        className={`w-8 h-8 border-2 rounded-sm flex items-center justify-center transition-colors duration-150 ${checked ? 'bg-black border-black' : 'bg-white border-black'}`}
+                        style={{ width: '32px', height: '32px', flexShrink: 0 }}
+                        className={`border-2 rounded-sm flex items-center justify-center transition-colors duration-150 ${checked ? 'bg-black border-black' : 'bg-white border-black'}`}
                       >
                         {/* 黒塗りつぶし: checked時のみ黒、未選択は白 */}
                       </span>
@@ -745,7 +751,8 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit, onOpenTerms }: RSVP
                   className="sr-only"
                 />
                 <span
-                  className={`w-8 h-8 border-2 rounded-sm flex items-center justify-center transition-colors duration-150 shrink-0 ${formData.afterParty ? 'bg-black border-black' : 'bg-white border-black'}`}
+                  style={{ width: '32px', height: '32px', flexShrink: 0 }}
+                  className={`border-2 rounded-sm flex items-center justify-center transition-colors duration-150 ${formData.afterParty ? 'bg-black border-black' : 'bg-white border-black'}`}
                 />
                 <span className="text-black text-base ja">参加希望</span>
               </label>

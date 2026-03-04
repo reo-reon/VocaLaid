@@ -125,9 +125,9 @@ export function GuestInputForm({
         <div className="grid grid-cols-2 gap-x-4 gap-y-4">
           {[
             { value: 'adult', label: '大人' },
-            { value: 'child', label: '子供（～18歳頃）', sub: '大人と同じ食事' },
-            { value: 'infant', label: '幼児（～5歳頃）', sub: 'お子様ランチ' },
-            { value: 'baby', label: '新生児（～1歳頃）', sub: '食事不要' },
+            { value: 'child', label: '子供', sub: '大人と同じ食事' },
+            { value: 'infant', label: '幼児', sub: 'お子様ランチ' },
+            { value: 'baby', label: '新生児', sub: '食事不要' },
           ].map(option => {
             const checked = guest.ageCategory === option.value;
             return (
@@ -141,7 +141,7 @@ export function GuestInputForm({
                   className="sr-only"
                 />
                 <span
-                  style={{ width: '2rem', height: '2rem', flexShrink: 0 }}
+                  style={{ width: '32px', height: '32px', flexShrink: 0 }}
                   className={`border-2 rounded-sm flex items-center justify-center transition-colors duration-150 ${checked ? 'bg-black border-black' : 'bg-white border-black'}`}
                 >
                 </span>
@@ -175,7 +175,8 @@ export function GuestInputForm({
                   className="sr-only"
                 />
                 <span
-                  className={`w-8 h-8 border-2 rounded-sm flex items-center justify-center transition-colors duration-150 ${checked ? 'bg-black border-black' : 'bg-white border-black'}`}
+                  style={{ width: '32px', height: '32px', flexShrink: 0 }}
+                  className={`border-2 rounded-sm flex items-center justify-center transition-colors duration-150 ${checked ? 'bg-black border-black' : 'bg-white border-black'}`}
                 >
                 </span>
                 <span className="text-black text-base ja">{option.label}</span>
@@ -214,7 +215,8 @@ export function GuestInputForm({
             className="sr-only"
           />
           <span
-            className={`w-8 h-8 border-2 rounded-sm flex items-center justify-center transition-colors duration-150 shrink-0 ${guest.afterParty ? 'bg-black border-black' : 'bg-white border-black'}`}
+            style={{ width: '32px', height: '32px', flexShrink: 0 }}
+            className={`border-2 rounded-sm flex items-center justify-center transition-colors duration-150 ${guest.afterParty ? 'bg-black border-black' : 'bg-white border-black'}`}
           >
             {/* 黒塗りつぶし: checked時のみ黒、未選択は白 */}
           </span>
