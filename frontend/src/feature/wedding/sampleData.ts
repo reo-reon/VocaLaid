@@ -24,7 +24,7 @@ O型　システムエンジニア
 道中どうかお気をつけて
 お越しくださいますよう
 お願い申し上げます`,
-    profileImage: '/img/groom/groom.png',
+    profileImage: '/img/groom/3679296_L_046.jpg',
   },
   bride: {
     japaneseFirstName: '美咲',
@@ -48,7 +48,7 @@ A型　ハーレーダビッドソン営業
 
 当日　皆様にお会いできることを
 心より楽しみにしております`,
-    profileImage: '/img/bride/bride.png',
+    profileImage: '/img/bride/3679289_L_039.jpg',
   },
   greetingMessage: `皆様にはご健勝のことと
 お慶び申し上げます

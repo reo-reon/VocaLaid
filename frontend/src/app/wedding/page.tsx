@@ -62,8 +62,15 @@ export default function WeddingInvitationPage() {
         date={config.ceremony.date}
         venue={config.ceremony.venue.name}
         backgroundImages={[
+          "/img/3679300_L_050.jpg",
+          "/img/3679357_L_107.jpg",
           "/img/UniversalStudioJp.JPG",
-          "/img/sample.png",
+          "/img/3679251_L_001.jpg",
+          "/img/3679267_L_017.jpg",
+          "/img/3679307_L_057.jpg",
+          "/img/3679331_L_081.jpg",
+          "/img/3679344_L_094.jpg",
+          "/img/3679350_L_100.jpg",
         ]}
       />
 
