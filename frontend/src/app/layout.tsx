@@ -25,8 +25,14 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: "ご結婚式 披露宴のご案内",
-  description: "このたびは招待状をお届けいたします ご多用のところ誠に恐れ入りますが ご出席賜りますよう謹んでお願い申し上げます",
+  title: "ご結婚式・披露宴のご案内",
+  description: "このたびは招待状をお届けいたします。ご多用のところ誠に恐れ入りますが、ご出席賜りますよう謹んでお願い申し上げます。",
+  openGraph: {
+    title: "ご結婚式・披露宴のご案内",
+    description: "このたびは招待状をお届けいたします。ご多用のところ誠に恐れ入りますが、ご出席賜りますよう謹んでお願い申し上げます。",
+    type: "website",
+    locale: "ja_JP",
+  },
 };
 
 export default function RootLayout({
@@ -35,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ja">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${rozhaOne.variable} ${notoSansJP.variable} antialiased`}
       >
