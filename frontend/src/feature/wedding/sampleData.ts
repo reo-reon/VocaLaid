@@ -48,7 +48,7 @@ export const sampleWeddingConfig: WeddingInvitationConfig = {
 
 当日　皆様にお会いできることを
 心より楽しみにしております`,
-    profileImage: '/img/bride/3679289_L_039.jpg',
+    profileImage: '/img/bride/3679290_L_040.jpg',
   },
   greetingMessage: `皆様にはご健勝のことと
 お慶び申し上げます

@@ -657,9 +657,9 @@ export function RSVPSection({ deadline, onSubmit: _onSubmit, onOpenTerms }: RSVP
               <div className="grid grid-cols-2 gap-4 sm:flex sm:flex-nowrap sm:gap-6">
                 {[
                   { value: 'adult', label: '大人' },
-                  { value: 'child', label: '子供（～18歳頃）', sub: '大人と同じ食事' },
-                  { value: 'infant', label: '幼児（～5歳頃）', sub: 'お子様ランチ' },
-                  { value: 'baby', label: '新生児（～1歳頃）', sub: '食事不要' },
+                  { value: 'child', label: '子供', sub: '大人と同じ食事' },
+                  { value: 'infant', label: '幼児', sub: 'お子様ランチ' },
+                  { value: 'baby', label: '新生児', sub: '食事不要' },
                 ].map(option => {
                   const checked = formData.ageCategory === option.value;
                   return (
