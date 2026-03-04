@@ -8,8 +8,8 @@ export const sampleWeddingConfig: WeddingInvitationConfig = {
     romanLastName: 'KATAOKA',
     birthDate: '1993年1月1日',
     bloodType: 'O',
-    introduction: `1993年1月1日　東京都生まれ
-O型　システムエンジニア
+    introduction: `東京都育ち
+システムエンジニア
 
 ドライブしたり友達とわいわい
 過ごす事が大好きです
@@ -33,8 +33,8 @@ O型　システムエンジニア
     romanLastName: 'YUASA',
     birthDate: '1994年4月13日',
     bloodType: 'A',
-    introduction: `1994年4月13日　広島県生まれ
-A型　ハーレーダビッドソン営業
+    introduction: `広島県育ち
+ハーレーダビッドソン営業
 
 バイクや映画・音楽を愛し
 家族でキャンプを楽しむ時間がとても大切です
@@ -64,21 +64,28 @@ A型　ハーレーダビッドソン営業
     type: 'ceremony',
     date: '2026.05.01',
     weekday: 'Fri',
-    time: '11:30　Reception: 11:00',
+    time: '開始: 11:30 （受付: 11:00）',
     venue: {
       name: 'THE HIGASHIYAMA',
       address: `〒605-0827
 京都市東山区八坂通下河原東入八坂上町366`,
       website: 'https://www.thesodoh.com/wedding/access/',
+      phone: '075-541-3333',
+      mapUrl:
+        'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12239.113619231508!2d135.778927!3d34.999121!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600108c55c3db09f%3A0xa2609c6915c96084!2z44K2IOOCveOCpuODieOCpiDmnbHlsbEg5Lqs6YO9IOODluODqeOCpOODgOODq-OCteODreODsw!5e1!3m2!1sja!2sjp!4v1771037557111!5m2!1sja!2sjp',
+    
     },
   },
   reception: {
     type: 'reception',
     date: '2026.05.01',
     weekday: 'Fri',
-    time: '12:30',
+    time: '開始: 12:30',
     venue: {
       name: `YASAKA`,
+      address: `〒605-0827
+京都市東山区八坂通下河原東入八坂上町366`,
+      website: 'https://www.thesodoh.com/wedding/access/',
       phone: '075-541-3333',
       mapUrl:
         'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12239.113619231508!2d135.778927!3d34.999121!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600108c55c3db09f%3A0xa2609c6915c96084!2z44K2IOOCveOCpuODieOCpiDmnbHlsbEg5Lqs6YO9IOODluODqeOCpOODgOODq-OCteODreODsw!5e1!3m2!1sja!2sjp!4v1771037557111!5m2!1sja!2sjp',
