@@ -4,35 +4,20 @@
 
 import { RestClient } from './restClient';
 import { RSVPFormData } from '@/feature/wedding/types';
+import type { components } from './schema';
 
 /**
- * バックエンドへ送信するゲスト1名分のDTO（主ゲスト・お連れ様共通）
+ * バックエンドへ送信するゲスト1名分のDTO
+ * ※ openapi-typescript で自動生成された型を使用
+ *    型を変更したい場合は backend の DTO を修正し `npm run generate:schema` → `npm run generate:api` を実行すること
  */
-export interface RSVPGuestItemDTO {
-  status: 'ATTENDING' | 'NOT_ATTENDING';
-  guestCategory: 'GROOM' | 'BRIDE';
-  japaneseLastName: string;
-  japaneseFirstName: string;
-  kanaLastName: string;
-  kanaFirstName: string;
-  email?: string;
-  ageCategory?: 'ADULT' | 'CHILD' | 'INFANT' | 'BABY';
-  zipcode?: string;
-  address?: string;
-  building?: string;
-  phone?: string;
-  dietaryRestrictions: 'WITH' | 'WITHOUT';
-  allergyInfo?: string;
-  afterParty?: boolean;
-  message?: string;
-}
+export type RSVPGuestItemDTO = components['schemas']['CreateRsvpGuestItemDto'];
 
 /**
  * RSVP バッチ送信DTO（配列形式）
+ * ※ 自動生成型
  */
-export interface RSVPSubmissionDTO {
-  guests: RSVPGuestItemDTO[];
-}
+export type RSVPSubmissionDTO = components['schemas']['CreateRsvpBatchDto'];
 
 /**
  * API Response for RSVP submission

@@ -129,6 +129,7 @@ enum AgeCategory {
   ADULT
   CHILD
   INFANT
+  BABY
 }
 
 enum DietaryRestriction {

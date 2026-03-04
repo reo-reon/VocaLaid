@@ -1,0 +1,177 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "App"
+        ]
+      }
+    },
+    "/rsvp": {
+      "post": {
+        "operationId": "RsvpController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRsvpBatchDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Rsvp"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "VocaLaid API",
+    "description": "VocaLaid RSVP API",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "RsvpStatus": {
+        "type": "string",
+        "enum": [
+          "ATTENDING",
+          "NOT_ATTENDING"
+        ]
+      },
+      "GuestCategory": {
+        "type": "string",
+        "enum": [
+          "GROOM",
+          "BRIDE"
+        ]
+      },
+      "AgeCategory": {
+        "type": "string",
+        "enum": [
+          "ADULT",
+          "CHILD",
+          "INFANT",
+          "BABY"
+        ]
+      },
+      "DietaryRestriction": {
+        "type": "string",
+        "enum": [
+          "WITH",
+          "WITHOUT"
+        ]
+      },
+      "CreateRsvpGuestItemDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RsvpStatus"
+              }
+            ]
+          },
+          "guestCategory": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GuestCategory"
+              }
+            ]
+          },
+          "japaneseLastName": {
+            "type": "string"
+          },
+          "japaneseFirstName": {
+            "type": "string"
+          },
+          "kanaLastName": {
+            "type": "string"
+          },
+          "kanaFirstName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "zipcode": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "building": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "ageCategory": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AgeCategory"
+              }
+            ]
+          },
+          "dietaryRestrictions": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DietaryRestriction"
+              }
+            ]
+          },
+          "allergyInfo": {
+            "type": "string"
+          },
+          "afterParty": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "guestCategory",
+          "japaneseLastName",
+          "japaneseFirstName",
+          "kanaLastName",
+          "kanaFirstName",
+          "dietaryRestrictions"
+        ]
+      },
+      "CreateRsvpBatchDto": {
+        "type": "object",
+        "properties": {
+          "guests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateRsvpGuestItemDto"
+            }
+          }
+        },
+        "required": [
+          "guests"
+        ]
+      }
+    }
+  }
+}

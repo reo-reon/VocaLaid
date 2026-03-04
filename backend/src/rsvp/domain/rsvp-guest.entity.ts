@@ -12,6 +12,7 @@ export enum AgeCategory {
   ADULT = 'ADULT',
   CHILD = 'CHILD',
   INFANT = 'INFANT',
+  BABY = 'BABY',
 }
 
 export enum DietaryRestriction {

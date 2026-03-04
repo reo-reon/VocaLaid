@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe, Logger } from '@nestjs/common';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './shared/filters/all-exceptions.filter';
 
@@ -41,6 +42,18 @@ async function bootstrap() {
   );
 
   app.setGlobalPrefix('api');
+
+  // Swagger / OpenAPI ドキュメント
+  const swaggerConfig = new DocumentBuilder()
+    .setTitle('VocaLaid API')
+    .setDescription('VocaLaid RSVP API')
+    .setVersion('1.0')
+    .build();
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  // 開発環境のみ /api/docs でUI表示
+  if (!isProduction) {
+    SwaggerModule.setup('api/docs', app, document);
+  }
 
   const port = process.env.PORT ?? 3004;
   await app.listen(port);
